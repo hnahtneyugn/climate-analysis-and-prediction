@@ -1,3 +1,7 @@
 *.nc
 *.tif
 .env
+*.json
+.vscode
+*.zip
+*.parquet

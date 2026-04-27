@@ -1,13 +1,37 @@
 import streamlit as st
 
-# 1. Cấu hình chung cho toàn bộ App
+# --- 1. ĐỊNH NGHĨA NỘI DUNG TRANG CHỦ (Để tránh lỗi đệ quy) ---
+def main_page():
+    st.title("🌍 Climate Analysis Dashboard")
+    st.markdown("---")
+    
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        st.header("📌 Giới thiệu dự án")
+        st.write("""
+        Hệ thống phân tích dữ liệu khí hậu khu vực Miền Trung Việt Nam giai đoạn 1980 - 2024.
+        Dashboard này giúp theo dõi các biến đổi quan trọng về nhiệt độ, lượng mưa, bức xạ và các chỉ số thủy văn phức tạp khác.
+        """)
+        
+        st.info("💡 **Hướng dẫn:** Hãy sử dụng menu bên trái để khám phá từng nhóm chỉ số khí hậu cụ thể.")
+    
+    with col2:
+        st.header("📊 Thông tin dữ liệu")
+        st.write("- **Nguồn:** ERA5 / NASA")
+        st.write("- **Khu vực:** Miền Trung VN")
+        st.write("- **Thời gian:** 1980 - 2024")
+
+    st.divider()
+    st.caption("Ứng dụng được phát triển bằng Streamlit & Python")
+
+# --- 2. CẤU HÌNH TRANG ---
 st.set_page_config(page_title="Climate Analysis Dashboard", page_icon="🌍", layout="wide")
 
-# 2. Định nghĩa các trang và Mapping tên hiển thị (Sidebar)
-# Bạn có thể gom nhóm để sidebar gọn gàng hơn
+# --- 3. ĐỊNH NGHĨA NAVIGATION (Dùng hàm trang_chu thay vì "app.py") ---
 pages = {
     "Tổng quan": [
-        st.Page("app.py", title="Trang chủ", icon="🏠"),
+        st.Page(main_page, title="Trang chủ", icon="🏠"),
     ],
     "Nhiệt độ & Độ ẩm": [
         st.Page("pages/01_air_n_surface_temp.py", title="Nhiệt độ Không khí & Bề mặt", icon="🌡️"),
@@ -35,34 +59,6 @@ pages = {
     ]
 }
 
-# 3. Khởi tạo Navigation
+# --- 4. CHẠY APP ---
 pg = st.navigation(pages)
 pg.run()
-
-# 4. Nội dung hiển thị riêng cho trang chủ (File app.py hiện tại)
-# Kiểm tra nếu trang hiện tại đang là app.py (Trang chủ)
-import os
-current_file = pg.title
-if current_file == "Trang chủ":
-    st.title("🌍 Climate Analysis Dashboard")
-    st.markdown("---")
-    
-    col1, col2 = st.columns([2, 1])
-    
-    with col1:
-        st.header("📌 Giới thiệu dự án")
-        st.write("""
-        Hệ thống phân tích dữ liệu khí hậu khu vực Miền Trung Việt Nam giai đoạn 1980 - 2024.
-        Dashboard này giúp theo dõi các biến đổi quan trọng về nhiệt độ, lượng mưa, bức xạ và các chỉ số thủy văn phức tạp khác.
-        """)
-        
-        st.info("💡 **Hướng dẫn:** Hãy sử dụng menu bên trái để khám phá từng nhóm chỉ số khí hậu cụ thể.")
-    
-    with col2:
-        st.header("📊 Thông tin dữ liệu")
-        st.write("- **Nguồn:** ERA5 / NASA")
-        st.write("- **Khu vực:** Miền Trung VN")
-        st.write("- **Tần suất:** Hàng tháng/năm")
-
-    st.divider()
-    st.caption("Ứng dụng được phát triển bằng Streamlit & Python")

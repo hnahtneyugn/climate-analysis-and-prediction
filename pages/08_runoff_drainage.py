@@ -39,7 +39,6 @@ if "year" not in df_daily.columns:
 
 df_clim = df_clim.reset_index() if "month" not in df_clim.columns else df_clim
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

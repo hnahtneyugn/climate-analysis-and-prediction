@@ -40,7 +40,6 @@ if "time" not in df_daily.columns:
     df_daily = df_daily.reset_index().rename(columns={"index": "time"})
     df_daily["time"] = pd.to_datetime(df_daily["time"])
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

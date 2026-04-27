@@ -39,7 +39,6 @@ if "month" not in df_daily.columns:
 if "year" not in df_daily.columns:
     df_daily["year"] = df_daily["time"].dt.year
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

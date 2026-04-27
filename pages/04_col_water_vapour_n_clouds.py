@@ -30,7 +30,6 @@ df_daily.index   = pd.to_datetime(df_daily.index)
 df_monthly.index = pd.to_datetime(df_monthly.index)
 df_yearly.index  = pd.to_datetime(df_yearly.index)
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

@@ -44,7 +44,6 @@ if "year" not in df_anom.columns:
 if "month" not in df_anom.columns:
     df_anom["month"] = df_anom["time"].dt.month
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

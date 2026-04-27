@@ -42,7 +42,6 @@ if "month" not in df_daily.columns:
 if "decade" not in df_daily.columns:
     df_daily["decade"] = (df_daily["year"] // 10) * 10
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

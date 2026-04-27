@@ -35,7 +35,6 @@ df_yearly_mean.index = pd.to_datetime(df_yearly_mean.index)
 if "decade" not in df_daily.columns:
     df_daily["decade"] = (df_daily.index.year // 10) * 10
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

@@ -65,7 +65,6 @@ if "time" in df_monthly.columns:
 
 df_daily_idx = df_daily.set_index("time")
 
-st.success("Data loaded ✔", icon="✅")
 st.markdown("---")
 
 

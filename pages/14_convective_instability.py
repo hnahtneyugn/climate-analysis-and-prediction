@@ -37,7 +37,6 @@ df_monthly.index = pd.to_datetime(df_monthly.index)
 df_yearly.index  = pd.to_datetime(df_yearly.index)
 df_raw.index     = pd.to_datetime(df_raw.index)
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

@@ -33,7 +33,6 @@ if "month" not in clim.columns:
 if "ratio" not in clim.columns:
     clim["ratio"] = clim["leaf_area_index_high_vegetation"] / clim["leaf_area_index_low_vegetation"]
 
-st.success("Data loaded", icon="✅")
 st.markdown("---")
 
 

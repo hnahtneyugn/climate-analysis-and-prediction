@@ -44,6 +44,10 @@ st.markdown("---")
 
 # Section 1 — Seasonal energy balance
 st.subheader("1. Chu kì mùa của hệ năng lượng cân bằng")
+st.markdown(
+    "Phân tích sự phân chia bức xạ thuần (Rn) thành dòng nhiệt cảm (H - làm nóng không khí) và dòng nhiệt ẩn (LE - dùng cho bốc hơi nước). "
+    "Mối quan hệ này quyết định nhiệt độ và độ ẩm của tầng khí quyển sát đất."
+)
 
 clim_shf = df_clim["shf"]
 clim_lhf = df_clim["lhf"]
@@ -84,6 +88,11 @@ st.markdown("---")
 
 # Section 2 — Bowen ratio seasonal and trend
 st.subheader("2. Chu kì và xu hướng dài hạn của tỉ lệ Bowen")
+st.markdown(
+    "Tỉ lệ Bowen (β = H/LE) là chỉ số phản ánh trạng thái vật lý của bề mặt.  \n"
+    "**β > 1:** Đặc trưng cho bề mặt khô, nhiệt cảm chiếm ưu thế.  \n"
+    "**β < 1:** Đặc trưng cho bề mặt ẩm, quá trình bốc hơi mạnh mẽ."
+)
 
 if "anom_br" in df_daily.columns:
     daily_br_ts = df_daily.set_index("time")["anom_br"]
@@ -119,6 +128,9 @@ st.markdown("---")
 
 # Section 3 — Bowen anomaly heatmap
 st.subheader("3. Heatmap dị thường tỉ lệ Bowen")
+st.markdown(
+    "Nhận diện các tháng có bề mặt đất khô hạn hơn bất thường (**màu đỏ**) hoặc ẩm ướt hơn (**màu xanh**) so với trung bình khí hậu."
+)
 
 df_monthly["year"]  = df_monthly["time"].dt.year
 df_monthly["month"] = df_monthly["time"].dt.month
@@ -139,6 +151,9 @@ st.markdown("---")
 
 # Section 4 — Bowen seasonal boxplot by decade
 st.subheader("4. Xu hướng chuyển dịch theo mùa của tỉ lệ Bowen qua các thập kỉ")
+st.markdown(
+    "Sự dịch chuyển của các biểu đồ hộp (box) qua các thập kỷ giúp phát hiện những thay đổi trong khả năng thoát hơi nước và sự nóng lên của bề mặt đất theo mùa."
+)
 
 df_plot = df_daily.copy()
 df_plot["br"] = df_plot["shf"] / df_plot["lhf"].replace(0, np.nan)

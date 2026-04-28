@@ -45,6 +45,11 @@ st.markdown("---")
 
 # Section 1 — Climatology by layer
 st.subheader("1. Chỉ số độ ẩm của đất trên từng tầng qua 45 năm")
+st.markdown(
+    "Biểu đồ thể hiện chu kỳ biến đổi độ ẩm trung bình hàng tháng tại 4 độ sâu khác nhau. "
+    "**Tầng mặt (7cm)** phản ứng nhanh nhất với lượng mưa và bốc hơi, trong khi các **tầng sâu (289cm)** "
+    "có độ ẩm ổn định hơn và ít bị ảnh hưởng bởi biến động thời tiết ngắn hạn."
+)
 
 month_col = "month" if "month" in df_clim.columns else df_clim.index.name
 clim_vals = df_clim.reset_index() if "month" not in df_clim.columns else df_clim
@@ -62,6 +67,10 @@ st.markdown("---")
 
 # Section 2 — Heatmap depth vs month
 st.subheader("2. Heatmap về độ ẩm của đất")
+st.markdown(
+    "Vẽ lại profile thẳng đứng của độ ẩm đất theo thời gian. "
+    "Quan sát sự thẩm thấu của nước từ bề mặt xuống các tầng sâu hơn trong mùa mưa và quá trình khô dần từ trên xuống dưới trong mùa khô."
+)
 
 clim_matrix = clim_vals[sw_vars].values.T
 
@@ -79,6 +88,10 @@ st.markdown("---")
 
 # Section 3 — Annual column water trend
 st.subheader("3. Tổng lượng nước trung bình trong đất qua các năm")
+st.markdown(
+    "Phân tích xu hướng dài hạn của tổng lượng nước tích trữ trong toàn bộ cột đất (0-289cm). "
+    "Nếu đường xu hướng (nét đứt) có **độ dốc âm**, điều này cho thấy tình trạng khô hạn đất đang diễn ra âm thầm nhưng liên tục qua các thập kỷ."
+)
 
 d1, d2, d3, d4 = 0.07, 0.21, 0.72, 1.89
 df_daily["daily_col"] = (df_daily["swvl1"]*d1 + df_daily["swvl2"]*d2 +
@@ -109,6 +122,10 @@ st.markdown("---")
 
 # Section 4 — Anomaly heatmaps by layer
 st.subheader("4. Heatmap đo dị thường trong độ ẩm đất theo từng tầng")
+st.markdown(
+    "Nhận diện các giai đoạn lịch sử có độ ẩm đất thấp bất thường (**màu đỏ**) hoặc cao bất thường (**màu xanh dương**). "
+    "Các năm hạn hán nông nghiệp nghiêm trọng sẽ hiện lên rõ rệt qua các dải màu đỏ kéo dài trên nhiều tháng."
+)
 
 df_anom["time"] = pd.to_datetime(df_anom["time"])
 df_anom_monthly = df_anom.resample("MS", on="time").mean().reset_index()
@@ -141,6 +158,10 @@ st.markdown("---")
 
 # Section 5 — Cross-correlation lag
 st.subheader("5. Độ trễ lan truyền ẩm giữa các tầng đất")
+st.markdown(
+    "Khi có một trận mưa, độ ẩm không thấm xuống các tầng sâu ngay lập tức. "
+    "Phân tích tương quan trễ (Cross-correlation) giúp định lượng mất bao nhiêu ngày để nước thẩm thấu từ tầng trên xuống tầng dưới."
+)
 
 pairs  = [("swvl1","swvl2"), ("swvl2","swvl3"), ("swvl3","swvl4")]
 labels = ["Tầng 1 → 2 (0.07m to 0.28m)",
@@ -168,6 +189,12 @@ st.markdown("---")
 
 # Section 6 — SSI
 st.subheader("6. Chỉ số độ ẩm đất chuẩn hoá (SSI)")
+st.markdown(
+    "Chỉ số SSI là một thước đo tiêu chuẩn để đánh giá hạn hán nông nghiệp.  \n"
+    "- **SSI < -1.5:** Tình trạng đất khô hạn nghiêm trọng.  \n"
+    "- **SSI > 1.5:** Đất trong trạng thái bão hòa nước cực độ.  \n"
+    "Dựa vào đây, có thể xác định các chu kỳ hạn hán kéo dài ảnh hưởng đến sản xuất địa phương."
+)
 
 weights = [0.07, 0.21, 0.72, 1.89]
 df_monthly_ssi = df_monthly.copy()

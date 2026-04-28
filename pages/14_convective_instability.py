@@ -4,8 +4,8 @@ Parquet files expected:
   daily.parquet       — columns: cape, ki, tt, cii, severe, month, season, decade
   monthly.parquet     — columns: cape, ki, tt, cii, month, year, cii_anom, cape_anom
   yearly.parquet      — columns: cape, ki, tt, cii, severe
-  climatology.parquet — columns: cape, ki, tt, cii   (index = month 1-12)
-  raw.parquet         — columns: cape, ki, tt         (index = hourly timestamps)
+  climatology.parquet — columns: cape, ki, tt, cii  (index = month 1-12)
+  raw.parquet         — columns: cape, ki, tt       (index = hourly timestamps)
 """
 
 import numpy as np
@@ -48,8 +48,8 @@ def minmax(s):
 
 st.subheader("1. Chu kỳ mùa của các chỉ số đối lưu")
 st.markdown(
-    "Min-max normalised seasonal cycle of CAPE, K-index, and Total Totals. "
-    "Synchronisation across indices marks the monsoon transition window."
+    "Chu kỳ mùa đã chuẩn hóa (min-max) của các chỉ số CAPE, K-index và Total Totals. "
+    "Sự đồng bộ giữa các chỉ số này đánh dấu giai đoạn chuyển tiếp của mùa gió mùa tại khu vực."
 )
 
 fig1 = go.Figure()
@@ -78,8 +78,8 @@ st.markdown("---")
 
 st.subheader("2. Xu hướng dài hạn của các chỉ số bất ổn định")
 st.markdown(
-    "Annual mean values of CII, CAPE, K-index, and Total Totals with linear trends. "
-    "K-index shows a statistically significant upward trend."
+    "Giá trị trung bình năm của các chỉ số CII, CAPE, K-index và Total Totals cùng với đường xu hướng tuyến tính. "
+    "Sự gia tăng của các chỉ số này phản ánh bầu khí quyển đang trở nên bất ổn định hơn theo thời gian."
 )
 
 metrics = [
@@ -121,7 +121,8 @@ st.markdown("---")
 
 st.subheader("3. Ma trận dị thường chỉ số đối lưu tổng hợp (CII)")
 st.markdown(
-    "Red = months with above-average instability; Blue = below-average."
+    "Nhận diện các tháng có độ bất ổn định cao bất thường (**màu đỏ**) hoặc thấp bất thường (**màu xanh**) so với trung bình lịch sử. "
+    "Chỉ số CII cao thường đi kèm với các hiện tượng thời tiết cực đoan như dông sét mạnh."
 )
 
 pivot = df_monthly.pivot(index="year", columns="month", values="cii_anom")
@@ -132,7 +133,7 @@ fig3 = go.Figure(data=go.Heatmap(
     y=pivot.index,
     colorscale="RdBu_r",
     zmid=0,
-    colorbar=dict(title="CII Anomaly")
+    colorbar=dict(title="Dị thường CII")
 ))
 fig3.update_layout(
     title="Ma trận dị thường chỉ số đối lưu tổng hợp (CII)",
@@ -146,7 +147,10 @@ st.markdown("---")
 # Section 4 — Tần suất ngày đối lưu mạnh
 
 st.subheader("4. Tần suất ngày đối lưu mạnh")
-st.markdown("Annual count of severe convection days (CII > 1) with 5-year rolling mean.")
+st.markdown(
+    "Thống kê số lượng ngày trong năm có cường độ đối lưu mạnh (CII > 1). "
+    "Đường trung bình trượt 5 năm giúp quan sát rõ hơn xu hướng biến động của các hiện tượng đối lưu cực đoan qua các thập kỷ."
+)
 
 annual_sev = df_daily["severe"].resample("YS").sum()
 x_sev = annual_sev.index.year
@@ -177,8 +181,8 @@ st.markdown("---")
 
 st.subheader("5. Cấu trúc nhiệt động lực học theo mùa")
 st.markdown(
-    "2D density of CAPE vs K-index coloured by mean Total Totals, "
-    "split by meteorological season."
+    "Biểu đồ mật độ 2D giữa chỉ số CAPE và K-index, phân chia theo các mùa khí tượng. "
+    "Sự tập trung của các điểm dữ liệu giúp nhận diện 'vùng đặc trưng' của các trạng thái bất ổn định khí quyển trong từng mùa."
 )
 
 season_map = {
@@ -220,8 +224,8 @@ st.markdown("---")
 
 st.subheader("6. Phân tách đóng góp vào xu hướng CAPE")
 st.markdown(
-    "Regression coefficients from T2m and Td anomalies onto CAPE anomaly. "
-    "Requires `df_monthly_t2m.csv` and `df_monthly_td.csv` — skipped if absent."
+    "Phân tích ảnh hưởng của sự thay đổi nhiệt độ (T2m) và điểm sương (Td) đến biến động của CAPE. "
+    "Biểu đồ cho thấy yếu tố nào (nhiệt hay ẩm) đóng vai trò chủ đạo trong việc gia tăng năng lượng đối lưu tại khu vực."
 )
 
 try:
@@ -250,7 +254,7 @@ try:
     )
     st.plotly_chart(fig6, width="stretch")
 except Exception:
-    st.info("Section 6 skipped — T2m and Td CSV files not found.")
+    st.info("Mục 6 tạm ẩn — Không tìm thấy tệp dữ liệu bổ trợ.")
 
 st.markdown("---")
 
@@ -258,7 +262,10 @@ st.markdown("---")
 # Section 7 — Chu kỳ ngày đêm của CAPE theo mùa
 
 st.subheader("7. Chu kỳ ngày đêm của CAPE theo mùa")
-st.markdown("Diurnal cycle of CAPE by meteorological season (UTC hours).")
+st.markdown(
+    "Phân tích sự biến thiên của năng lượng đối lưu trong 24 giờ của một ngày. "
+    "Đỉnh của CAPE thường xuất hiện vào thời điểm nhiệt độ bề mặt cao nhất, cung cấp năng lượng cho các cơn dông chiều tối."
+)
 
 season_colors = {"DJF": "#185FA5", "MAM": "#639922", "JJA": "#D85A30", "SON": "#BA7517"}
 season_months_map = {"DJF": [12,1,2], "MAM": [3,4,5], "JJA": [6,7,8], "SON": [9,10,11]}
@@ -276,7 +283,7 @@ for s_name, s_months in season_months_map.items():
 
 fig7.update_layout(
     title="Chu kỳ ngày đêm của CAPE theo mùa",
-    xaxis_title="Giờ (UTC)", yaxis_title="Mean CAPE (J/kg)",
+    xaxis_title="Giờ (UTC)", yaxis_title="CAPE Trung bình (J/kg)",
     xaxis=dict(tickmode="linear", tick0=0, dtick=3),
     hovermode="x unified", height=450
 )
@@ -288,8 +295,8 @@ st.markdown("---")
 
 st.subheader("8. Phân tích đuôi phân phối và độ lệch (Extreme Tail)")
 st.markdown(
-    "Top: p99 CAPE trend.  "
-    "Bottom: skewness ratio p99/p50 — rising ratio means extremes outpace the median."
+    "**Phía trên:** Xu hướng của các giá trị CAPE cực đại (p99).  \n"
+    "**Phía dưới:** Tỷ lệ p99/p50 giúp đánh giá liệu các hiện tượng cực đoan đang gia tăng nhanh hơn so với mức trung bình hay không."
 )
 
 p99 = df_daily["cape"].resample("YS").quantile(0.99)
@@ -302,8 +309,8 @@ sl2, ic2, _, p2, _ = stats.linregress(years_tail, skew_ratio.values)
 
 fig8 = make_subplots(rows=2, cols=1, shared_xaxes=True,
                      subplot_titles=[
-                         f"CAPE p99 Trend: {sl1*10:+.1f} J/kg/decade (p={p1:.3f})",
-                         f"Tỷ lệ lệch p99/p50 — Trend: {sl2*10:+.4f}/decade"
+                         f"Xu hướng p99 CAPE: {sl1*10:+.1f} J/kg/thập kỷ (p={p1:.3f})",
+                         f"Tỷ lệ lệch p99/p50 — Trend: {sl2*10:+.4f}/thập kỷ"
                      ])
 
 fig8.add_trace(go.Scatter(
@@ -326,6 +333,6 @@ fig8.add_trace(go.Scatter(
 
 fig8.update_xaxes(title_text="Năm", row=2, col=1)
 fig8.update_yaxes(title_text="CAPE (J/kg)", row=1, col=1)
-fig8.update_yaxes(title_text="p99/p50 ratio", row=2, col=1)
+fig8.update_yaxes(title_text="Tỷ lệ p99/p50", row=2, col=1)
 fig8.update_layout(height=600, hovermode="x")
 st.plotly_chart(fig8, width="stretch")

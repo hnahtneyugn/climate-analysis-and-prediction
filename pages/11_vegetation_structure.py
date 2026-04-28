@@ -38,6 +38,9 @@ st.markdown("---")
 
 # Section 1 — Pie chart land cover
 st.subheader("1. Thành phần lớp phủ bề mặt trung bình")
+st.markdown(
+    "Tỷ lệ phân bổ các loại hình lớp phủ bề mặt, bao gồm thực vật tầng cao (cây thân gỗ), thực vật tầng thấp (cỏ, bụi cây) và diện tích đất trống hoặc các loại hình khác."
+)
 
 avg_hvc = clim["high_vegetation_cover"].mean()
 avg_lvc = clim["low_vegetation_cover"].mean()
@@ -57,6 +60,9 @@ st.markdown("---")
 
 # Section 2 — Raw LAI seasonal
 st.subheader("2. Chu kỳ mùa của chỉ số diện tích lá (Raw LAI)")
+st.markdown(
+    "Chỉ số diện tích lá (LAI) đo lường mật độ tán lá trên một đơn vị diện tích đất. Chu kỳ này cho thấy sự thay đổi về độ xanh và sinh khối của các tầng thực vật qua các tháng trong năm."
+)
 
 fig2 = go.Figure()
 fig2.add_trace(go.Scatter(x=MONTH_LABELS, y=clim["leaf_area_index_high_vegetation"],
@@ -73,6 +79,9 @@ st.markdown("---")
 
 # Section 3 — Effective LAI stackplot
 st.subheader("3. Tổng diện tích lá hiệu dụng theo mùa")
+st.markdown(
+    "Chỉ số LAI hiệu dụng được tính toán bằng cách kết hợp mật độ lá và diện tích che phủ thực tế. Đây là thông số quan trọng để đánh giá khả năng quang hợp và thoát hơi nước tổng thể của hệ sinh thái."
+)
 
 fig3 = go.Figure()
 fig3.add_trace(go.Scatter(x=MONTH_LABELS, y=clim["eff_lai_high"],
@@ -90,6 +99,9 @@ st.markdown("---")
 
 # Section 4 — LAI heatmap
 st.subheader("4. Heatmap cường độ xanh theo tháng")
+st.markdown(
+    "Biểu đồ nhiệt thể hiện sự biến động mật độ lá của hai tầng thực vật, giúp dễ dàng nhận diện các giai đoạn tăng trưởng mạnh hoặc suy giảm sinh khối theo mùa."
+)
 
 heatmap_data = clim[["leaf_area_index_high_vegetation", "leaf_area_index_low_vegetation"]].values.T
 
@@ -108,6 +120,9 @@ st.markdown("---")
 
 # Section 5 — LAI ratio bar
 st.subheader("5. Tỷ lệ đóng góp LAI (Tầng cao / Tầng thấp)")
+st.markdown(
+    "So sánh tỷ lệ đóng góp về diện tích lá giữa tầng cây cao và tầng cây thấp. Tỷ số này phản ánh cấu trúc ưu thế của thảm thực vật trong khu vực phân tích."
+)
 
 fig5 = go.Figure()
 fig5.add_trace(go.Bar(x=MONTH_LABELS, y=clim["ratio"],
@@ -121,6 +136,9 @@ st.markdown("---")
 
 # Section 6 — Phase plot
 st.subheader("6. Không gian trạng thái thực vật (Phase Plot)")
+st.markdown(
+    "Biểu đồ pha thể hiện quỹ đạo phát triển đồng thời của hai tầng thực vật qua 12 tháng, giúp quan sát sự lệch pha hoặc đồng bộ trong chu kỳ sinh trưởng tự nhiên."
+)
 
 fig6 = go.Figure()
 fig6.add_trace(go.Scatter(
@@ -141,6 +159,9 @@ st.markdown("---")
 
 # Section 7 — Correlation low vs high
 st.subheader("7. Tương quan cấu trúc giữa các tầng thực vật")
+st.markdown(
+    "Phân tích mối liên hệ thống kê giữa mật độ lá tầng thấp và tầng cao, cho thấy tính ổn định và sự phụ thuộc lẫn nhau trong cấu trúc thảm thực vật tại địa phương."
+)
 
 x_lai = clim["leaf_area_index_low_vegetation"].values
 y_lai = clim["leaf_area_index_high_vegetation"].values

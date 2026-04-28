@@ -38,6 +38,11 @@ st.markdown("---")
 
 # Section 1 — Seasonal climatology
 st.subheader("1. Khí hậu học theo mùa: Nhiệt độ điểm sương vs Nhiệt độ không khí")
+st.markdown(
+    "Nhiệt độ điểm sương (Td) là nhiệt độ mà tại đó không khí trở nên bão hòa hơi nước. "
+    "Khoảng cách giữa nhiệt độ không khí (T2m) và điểm sương (Td) được gọi là **Chênh lệch điểm sương (DPD)**. "
+    "Vùng tô màu xám càng hẹp cho thấy không khí càng ẩm và gần trạng thái bão hòa (dễ hình thành mây, sương mù hoặc mưa)."
+)
 
 fig1 = go.Figure()
 fig1.add_trace(go.Scatter(x=MONTH_LABELS, y=climatology["t2m"],
@@ -58,6 +63,12 @@ st.markdown("---")
 
 # Section 2 — DPD seasonal and trend
 st.subheader("2. Chu kỳ mùa và xu hướng của chênh lệch điểm sương (DPD)")
+st.markdown(
+    "DPD là một chỉ số quan trọng phản ánh độ khô của không khí.  \n"
+    "**Biểu đồ bên trái:** Cho thấy sự thay đổi độ khô/ẩm theo các tháng trong năm.  \n"
+    "**Biểu đồ bên phải:** Xu hướng dài hạn của DPD. Nếu đường xu hướng đi lên, điều đó có nghĩa là không khí đang trở nên 'khô' hơn "
+    "so với khả năng chứa nước của nó, ngay cả khi lượng hơi nước có thể tăng lên."
+)
 
 x_yr = df_yearly.index.year.values
 y_dpd = df_yearly["dpd"].values
@@ -85,6 +96,11 @@ st.markdown("---")
 
 # Section 3 — Long-term trend Td vs T2m
 st.subheader("3. Xu hướng dài hạn của Nhiệt độ điểm sương (so sánh với T2m)")
+st.markdown(
+    "Phân tích so sánh tốc độ nóng lên của điểm sương (Td) so với nhiệt độ không khí (T2m). "
+    "Trong bối cảnh biến đổi khí hậu, nếu Td tăng chậm hơn T2m, độ ẩm tương đối (RH) sẽ có xu hướng giảm, "
+    "dẫn đến nhu cầu bốc hơi của khí quyển tăng cao và làm khô hạn bề mặt đất."
+)
 
 slope_d, int_d, _, _, _ = stats.linregress(x_yr, df_yearly["d2m"].values)
 slope_t, int_t, _, _, _ = stats.linregress(x_yr, df_yearly["t2m"].values)
@@ -108,6 +124,10 @@ st.markdown("---")
 
 # Section 4 — Anomaly heatmap
 st.subheader("4. Ma trận dị thường Nhiệt độ điểm sương")
+st.markdown(
+    "Ma trận Heatmap giúp nhận diện các giai đoạn lịch sử có độ ẩm cao bất thường (màu xanh lá đậm) "
+    "hoặc khô hạn bất thường (màu nâu). Điểm sương cao thường đi kèm với các đợt nóng ẩm gây cảm giác oi bức cực độ."
+)
 
 pivot = df_anomaly.pivot(index="year", columns="month", values="d2m")
 fig4 = go.Figure(data=go.Heatmap(
@@ -123,6 +143,11 @@ st.markdown("---")
 
 # Section 5 — Scatter T2m vs Td
 st.subheader("5. Tương quan Nhiệt độ điểm sương và Nhiệt độ không khí")
+st.markdown(
+    "Mỗi điểm dữ liệu thể hiện mối quan hệ giữa T2m và Td của một ngày. "
+    "**Đường bão hòa (nét đứt):** Là nơi T2m = Td (Độ ẩm 85-100%). "
+    "Các điểm nằm xa đường này về phía dưới đại diện cho những ngày không khí rất khô."
+)
 
 sample = df_daily.sample(min(5000, len(df_daily)), random_state=42)
 fig5 = go.Figure()
@@ -144,6 +169,10 @@ st.markdown("---")
 
 # Section 6 — High RH days
 st.subheader("6. Tần suất số ngày độ ẩm cao cực đoan")
+st.markdown(
+    "Đếm số ngày trong năm có độ ẩm tương đối (RH) trung bình vượt ngưỡng **85%**. "
+    "Độ ẩm cao cực đoan ảnh hưởng đến khả năng thoát mồ hôi của cơ thể người và là điều kiện thuận lợi cho nấm mốc phát triển."
+)
 
 high_rh = (df_daily["rh"] > 85).resample("YS").sum()
 rolling5 = high_rh.rolling(5).mean()
@@ -161,6 +190,11 @@ st.markdown("---")
 
 # Section 7 — Diurnal cycle by season
 st.subheader("7. Chu kỳ ngày đêm của Nhiệt độ điểm sương theo mùa")
+st.markdown(
+    "Phân tích sự thay đổi lượng hơi nước trong 24 giờ của một ngày. "
+    "Điểm sương thường có chu kỳ ngày đêm ổn định hơn nhiệt độ không khí, nhưng vẫn cho thấy những đặc trưng riêng biệt "
+    "giữa mùa mưa (JJA/SON) ẩm ướt và mùa khô (DJF/MAM)."
+)
 
 season_map = {12:"DJF",1:"DJF",2:"DJF",3:"MAM",4:"MAM",5:"MAM",
               6:"JJA",7:"JJA",8:"JJA",9:"SON",10:"SON",11:"SON"}

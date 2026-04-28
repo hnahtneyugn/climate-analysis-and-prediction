@@ -51,8 +51,8 @@ st.markdown("---")
 
 st.subheader("1. Heatmap dị thường trong độ hội tụ ẩm")
 st.markdown(
-    "Monthly moisture convergence anomaly over 45 years. "
-    "Darker summer months in recent decades suggest strengthening convergence."
+    "Ma trận dị thường hội tụ độ ẩm hàng tháng trong suốt 45 năm qua. Các màu sắc đậm hơn trong những tháng mùa hè của các "
+    "thập kỷ gần đây cho thấy xu hướng thay đổi trong cường độ hội tụ ẩm tại khu vực phân tích."
 )
 
 monthly_anom = df_anom.groupby(["year", "month"])["avg_vimdf"].mean().reset_index()
@@ -79,8 +79,8 @@ st.markdown("---")
 
 st.subheader("2. Xu hướng lâu dài của độ hội tụ ẩm trung bình năm")
 st.markdown(
-    "Annual mean moisture convergence with linear regression trend. "
-    "A declining slope indicates drying tendency in recent years."
+    "Biến động giá trị trung bình năm của độ hội tụ ẩm tích hợp (VIMDF) cùng với đường xu hướng hồi quy tuyến tính. "
+    "Sự thay đổi của độ dốc đường xu hướng phản ánh các biến đổi trong việc cung cấp hơi nước quy mô lớn cho khu vực."
 )
 
 annual_mc = df_daily.groupby("year")["avg_vimdf"].mean().reset_index()
@@ -97,7 +97,7 @@ fig2.add_trace(go.Scatter(
 fig2.add_trace(go.Scatter(
     x=annual_mc["year"], y=trend_line,
     mode="lines", line=dict(color="red", width=2),
-    name=f"Xu hướng: {slope*10:.4f}/decade (p={p_val:.3f})"
+    name=f"Xu hướng: {slope*10:.4f}/thập kỷ (p={p_val:.3f})"
 ))
 fig2.update_layout(
     title="Xu hướng lâu dài của độ hội tụ ẩm trung bình năm",

@@ -39,6 +39,11 @@ st.markdown("---")
 
 # Section 1 — Annual trend
 st.subheader("1. Xu hướng thay đổi nhiệt độ hàng năm")
+st.markdown(
+    "Biểu đồ thể hiện xu hướng biến đổi dài hạn của nhiệt độ không khí (2m) và nhiệt độ bề mặt đất. "
+    "Đường nét đứt biểu thị tốc độ nóng lên theo từng thập kỷ, giúp xác định mức độ tác động của "
+    "biến đổi khí hậu tại khu vực Miền Trung trong hơn 40 năm qua."
+)
 
 df_yearly = df_daily[["t2m", "tskin"]].resample("YS").mean()
 df_yearly["Year"] = df_yearly.index.year
@@ -65,6 +70,11 @@ st.markdown("---")
 
 # Section 2 — Seasonal climatology
 st.subheader("2. Chu kỳ mùa trung bình (Climatology)")
+st.markdown(
+    "Phác họa chu kỳ nhiệt độ trung bình qua các tháng trong năm dựa trên dữ liệu tích lũy 45 năm. "
+    "Vùng tô màu xám thể hiện sự chênh lệch nhiệt độ giữa mặt đất và không khí, thường đạt giá trị "
+    "cực đại vào các tháng mùa hè nắng nóng điểm điểm."
+)
 
 fig2 = go.Figure()
 fig2.add_trace(go.Scatter(x=MONTH_LABELS, y=climatology["t2m"],
@@ -82,6 +92,11 @@ st.markdown("---")
 
 # Section 3 — Monthly anomaly heatmap
 st.subheader("3. Ma trận dị thường nhiệt độ hàng tháng")
+st.markdown(
+    "Ma trận này cho thấy sự sai lệch nhiệt độ (dị thường) so với trung bình lịch sử của từng tháng. "
+    "**Các ô màu đỏ đậm** chỉ những tháng có nhiệt độ cao bất thường, giúp nhận diện nhanh các năm "
+    "có hiện tượng El Niño mạnh hoặc các đợt nắng nóng kỷ lục."
+)
 
 pivot_anom = df_monthly.copy()
 pivot_anom["Year"] = pivot_anom.index.year
@@ -104,6 +119,11 @@ st.markdown("---")
 
 # Section 4 — Hot days frequency
 st.subheader("4. Tần suất các ngày nắng nóng cực đoan")
+st.markdown(
+    "Theo dõi số lượng ngày trong năm có nhiệt độ cao nhất (Tmax) vượt ngưỡng **32°C**. "
+    "Đường trung bình trượt 5 năm (màu đỏ) giúp làm mượt dữ liệu để thấy rõ xu hướng gia tăng "
+    "tần suất và cường độ của các đợt nóng cực đoan theo thời gian."
+)
 
 hot_days = (df_daily["tmax"] > 32).resample("YS").sum()
 rolling5 = hot_days.rolling(5).mean()
@@ -121,6 +141,11 @@ st.markdown("---")
 
 # Section 5 — DTR trend
 st.subheader("5. Biến động biên độ nhiệt ngày (DTR)")
+st.markdown(
+    "Biên độ nhiệt ngày (DTR) là sự chênh lệch giữa nhiệt độ cao nhất và thấp nhất trong ngày. "
+    "Sự thay đổi của chỉ số này thường liên quan đến độ ẩm, độ che phủ mây và quá trình đô thị hóa, "
+    "ảnh hưởng trực tiếp đến sức khỏe cộng đồng và năng suất nông nghiệp."
+)
 
 dtr_yearly = df_daily["DTR"].resample("YS").mean()
 x_dtr = dtr_yearly.index.year
@@ -141,6 +166,11 @@ st.markdown("---")
 
 # Section 6 — Decade distribution
 st.subheader("6. Sự dịch chuyển phân phối nhiệt độ qua các thập kỷ")
+st.markdown(
+    "So sánh phân bố nhiệt độ không khí hàng ngày giữa các thập kỷ (từ 1980s đến 2020s). "
+    "Việc các hộp dữ liệu (box) dịch chuyển dần lên phía trên minh chứng cho hiện tượng "
+    "nóng lên toàn cầu đang diễn ra một cách ổn định và liên tục tại địa phương."
+)
 
 df_daily["Decade_Label"] = df_daily["Decade"].astype(str) + "s"
 decades = sorted(df_daily["Decade_Label"].unique())
@@ -157,6 +187,11 @@ st.markdown("---")
 
 # Section 7 — Scatter T2m vs Tskin
 st.subheader("7. Tương quan vật lý giữa bề mặt đất và khí quyển")
+st.markdown(
+    "Minh họa mối quan hệ vật lý trực tiếp giữa nhiệt độ bề mặt đất (Tskin) và nhiệt độ lớp khí quyển sát đất (T2m). "
+    "Màu sắc của các điểm dữ liệu đại diện cho các tháng trong năm, cho thấy sự phản hồi nhiệt khác nhau "
+    "giữa mùa khô (nắng nóng) và mùa mưa (ẩm ướt)."
+)
 
 sample = df_daily.sample(min(5000, len(df_daily)), random_state=42)
 fig7 = go.Figure()

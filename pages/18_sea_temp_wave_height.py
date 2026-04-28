@@ -44,8 +44,8 @@ st.markdown("---")
 
 st.subheader("1. Nhiệt độ nước biển và độ cao sóng biển qua các tháng")
 st.markdown(
-    "Monthly climatological SST (red) and SWH (blue) with ±1 std bands. "
-    "NE monsoon depresses SST while raising wave heights; SW monsoon reverses this."
+    "Chu kỳ khí hậu hàng tháng của nhiệt độ mặt nước biển (SST - màu đỏ) và độ cao sóng (SWH - màu xanh) kèm theo dải độ lệch chuẩn ±1. "
+    "Gió mùa Đông Bắc thường làm giảm nhiệt độ biển trong khi làm tăng độ cao sóng; ngược lại gió mùa Tây Nam thường đi kèm với nhiệt độ biển cao hơn."
 )
 
 monthly_std = df_daily.groupby("month")[["sst", "swh"]].std().reset_index()
@@ -102,7 +102,10 @@ st.markdown("---")
 # Section 2 — Xu hướng dài hạn SST
 
 st.subheader("2. Xu hướng dài hạn của nhiệt độ mặt nước biển")
-st.markdown("Annual mean SST with linear trend. Climate change signal is clearly visible.")
+st.markdown(
+    "Biến động nhiệt độ mặt nước biển trung bình năm cùng với đường xu hướng tuyến tính. "
+    "Tín hiệu của biến đổi khí hậu được thể hiện rõ ràng qua tốc độ nóng lên của đại dương qua từng thập kỷ."
+)
 
 df_annual_sst = df_daily.groupby("year")["sst"].mean().reset_index()
 slope, intercept, r_val, p_val, _ = stats.linregress(df_annual_sst["year"], df_annual_sst["sst"])
@@ -134,9 +137,8 @@ st.markdown("---")
 
 st.subheader("3. Heatmap dị thường nhiệt độ mặt nước biển")
 st.markdown(
-    "Blue dominating pre-2000; red intensifying post-2010 — "
-    "a clear warming signal consistent with global climate change. "
-    "ENSO years annotated."
+    "Ma trận dị thường nhiệt độ biển: Sắc xanh chiếm ưu thế trước năm 2000 và sắc đỏ tăng cường mạnh mẽ sau năm 2010 "
+    "— một tín hiệu nóng lên rõ rệt đồng nhất với biến đổi khí hậu toàn cầu. Các năm có hiện tượng El Niño/La Niña mạnh được đánh dấu trên biểu đồ."
 )
 
 heatmap_data = df_daily.pivot_table(index="year", columns="month", values="anom_sst", aggfunc="mean")
@@ -180,8 +182,8 @@ st.markdown("---")
 
 st.subheader("4. Xu hướng về tần suất và cường độ của các đợt nước biển nóng bất thường")
 st.markdown(
-    "Marine Heat Wave days defined as SST > 90th percentile per month. "
-    "Frequency and mean anomaly intensity shown."
+    "Thống kê các đợt sóng nhiệt đại dương (Marine Heat Waves - MHW), được xác định khi nhiệt độ biển vượt ngưỡng bách phân vị thứ 90 theo tháng. "
+    "Biểu đồ thể hiện sự gia tăng về cả tần suất (số ngày) và cường độ trung bình của các đợt nóng bất thường này."
 )
 
 mhw_thresh = df_daily.groupby("month")["sst"].transform(lambda x: x.quantile(0.90))
@@ -232,7 +234,10 @@ st.markdown("---")
 # Section 5 — Tần suất sóng cực đoan
 
 st.subheader("5. Tần suất sóng cực đoan và mùa bão")
-st.markdown("Annual count of extreme wave days (SWH > 95th percentile) with 5-year rolling mean.")
+st.markdown(
+    "Thống kê số lượng ngày trong năm có độ cao sóng cực đoan (vượt ngưỡng bách phân vị thứ 95). "
+    "Đường trung bình trượt 5 năm giúp nhận diện xu hướng biến đổi của năng lượng sóng biển, thường liên quan chặt chẽ đến hoạt động của bão và gió mùa."
+)
 
 swh_p95 = df_daily["swh"].quantile(0.95)
 df_daily["is_extreme_wave"] = df_daily["swh"] > swh_p95

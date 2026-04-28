@@ -49,8 +49,8 @@ st.markdown("---")
 
 st.subheader("1. Biểu đồ hướng gió và tốc độ gió theo mùa")
 st.markdown(
-    "Polar bar charts showing wind direction frequency weighted by speed bins, "
-    "for 10m and 100m, split by season."
+    "Biểu đồ hoa gió (Polar bar) thể hiện tần suất hướng gió kết hợp với các dải tốc độ tại độ cao 10m và 100m, "
+    "được phân chia theo từng mùa khí tượng. Điều này giúp nhận diện hướng gió chủ đạo và các thời điểm có năng lượng gió mạnh nhất."
 )
 
 season_months_map = {
@@ -113,8 +113,8 @@ st.markdown("---")
 
 st.subheader("2. Chỉ số khí hậu về tốc độ gió qua các tháng")
 st.markdown(
-    "Monthly climatological wind speed at 10m and 100m with ±1 std bands. "
-    "Secondary axis shows the speed-up ratio ws100/ws10."
+    "Chỉ số tốc độ gió trung bình tháng tại độ cao 10m và 100m kèm theo dải độ lệch chuẩn (±1 std). "
+    "Trục phụ bên phải thể hiện tỷ lệ gia tăng tốc độ gió theo độ cao (Speed-up ratio), phản ánh mức độ đứt gãy gió trung bình của khu vực."
 )
 
 clim_stats = df_daily.groupby("month").agg(
@@ -183,7 +183,8 @@ st.markdown("---")
 
 st.subheader("3. Xu hướng dài hạn của tốc độ gió và chỉ số Alpha")
 st.markdown(
-    "Annual mean wind speed at 10m/100m and wind shear exponent (α) with trend lines."
+    "Theo dõi biến động dài hạn của tốc độ gió trung bình năm tại 10m/100m và chỉ số đứt gãy gió (Alpha - α). "
+    "Sự thay đổi của chỉ số Alpha có thể liên quan đến các biến chuyển trong độ ổn định của lớp biên khí quyển qua các thập kỷ."
 )
 
 annual_df = df_daily.groupby("year").agg(
@@ -241,7 +242,8 @@ st.markdown("---")
 
 st.subheader("4. Xu hướng mật độ công suất gió tại 100m và tần suất gió vượt ngưỡng")
 st.markdown(
-    "Annual wind power density at 100m and fraction of days above/below the 3 m/s operating threshold."
+    "Phân tích mật độ công suất gió (WPD) - một chỉ số then chốt để đánh giá tiềm năng năng lượng gió. "
+    "Biểu đồ dưới thể hiện tỷ lệ số ngày trong năm mà gió đạt ngưỡng vận hành hiệu quả cho các tuabin hiện đại (≥ 3 m/s)."
 )
 
 df_daily["is_high"] = (df_daily["ws100"] >= 3).astype(int)
@@ -307,7 +309,10 @@ st.markdown("---")
 # Section 5 — Heatmap dị thường tốc độ gió 10m
 
 st.subheader("5. Heatmap dị thường tốc độ gió trong các năm tại độ cao 10m")
-st.markdown("Red = faster than climatology; Blue = slower.")
+st.markdown(
+    "Ma trận nhận diện các giai đoạn có tốc độ gió nhanh hơn trung bình (**màu đỏ**) hoặc chậm hơn trung bình (**màu xanh**) so với dữ liệu lịch sử 45 năm. "
+    "Điều này giúp xác định các năm có hoạt động gió mùa hoặc bão bất thường."
+)
 
 heatmap_data = df_daily.pivot_table(index="year", columns="month", values="anom_ws10", aggfunc="mean")
 
@@ -331,7 +336,10 @@ st.markdown("---")
 # Section 6 — Độ nhất quán hướng gió mùa Tây Nam
 
 st.subheader("6. Độ nhất quán của hướng gió mùa Tây Nam trong mùa hạ")
-st.markdown("Fraction of JJA days with wind direction within ±45° of the dominant direction.")
+st.markdown(
+    "Phân tích tỷ lệ số ngày trong mùa mưa (tháng 6, 7, 8) có hướng gió nhất quán (trong khoảng ±45° so với hướng chủ đạo). "
+    "Sự ổn định của hướng gió mùa Tây Nam là yếu tố quan trọng cho dự báo thời tiết và vận hành các nhà máy điện gió."
+)
 
 monsoon_data = df_daily[df_daily["month"].isin([6, 7, 8])].copy()
 angles_rad = np.deg2rad(monsoon_data["wd10_circ"])
@@ -373,7 +381,10 @@ st.markdown("---")
 # Section 7 — Chu kỳ và tần suất của chỉ số Alpha
 
 st.subheader("7. Biểu đồ chu kỳ và tần suất của chỉ số Alpha")
-st.markdown("Left: monthly climatology of Alpha. Right: annual count of extreme shear days.")
+st.markdown(
+    "**Bên trái:** Chu kỳ biến thiên hàng tháng của chỉ số Alpha.  \n"
+    "**Bên phải:** Thống kê tần suất xuất hiện các ngày có sự đứt gãy gió cực đoan (Alpha cao) hoặc khí quyển hòa trộn tốt (Alpha thấp)."
+)
 
 alpha_clim = df_daily.groupby("month")["alpha"].agg(["mean", "std"]).reset_index()
 high_shear = df_daily[df_daily["alpha"] > 0.4].groupby("year").size()
@@ -423,7 +434,10 @@ st.markdown("---")
 # Section 8 — Weibull theo thập kỉ
 
 st.subheader("8. Biểu đồ Weibull theo thập kỷ về tốc độ gió ở độ cao 100m")
-st.markdown("Fitted Weibull PDF per decade — stable shape confirms consistent wind resource.")
+st.markdown(
+    "Hàm mật độ xác suất Weibull được khớp cho từng thập kỷ. Sự ổn định của các đường cong này khẳng định "
+    "nguồn tài nguyên gió tại độ cao 100m là ổn định và có giá trị khai thác kinh tế cao trong dài hạn."
+)
 
 decades = sorted(df_daily["decade"].unique())
 colors_wb = [f"rgba({r},{g},{b},0.9)" for r, g, b in [

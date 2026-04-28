@@ -46,6 +46,11 @@ st.markdown("---")
 
 # Section 1 — Annual trend + piecewise
 st.subheader("1. Xu hướng bức xạ trung bình năm (Tín hiệu tối đi / sáng lên)")
+st.markdown(
+    "Phân tích sự thay đổi dài hạn của lượng bức xạ mặt trời chiếu xuống bề mặt đất. "
+    "Sự so sánh giữa mô hình tuyến tính và đa đoạn (piecewise) giúp xác định các giai đoạn 'tối đi' hoặc 'sáng lên' toàn cầu "
+    "do tác động của sol khí (aerosol) và biến đổi độ che phủ mây qua các thập kỷ tại khu vực."
+)
 
 annual_rad = df_daily.resample("YE", on="time").mean().reset_index()
 annual_rad["year"] = annual_rad["time"].dt.year
@@ -101,6 +106,10 @@ st.markdown("---")
 
 # Section 2 — Anomaly heatmap
 st.subheader("2. Heatmap dị thường trong bức xạ Mặt Trời")
+st.markdown(
+    "Nhận diện các giai đoạn có lượng bức xạ mặt trời cao bất thường (**màu đỏ**) hoặc thấp bất thường (**màu xanh**) "
+    "so với trung bình khí hậu. Những biến động này thường liên quan mật thiết đến sự thay đổi của độ che phủ mây và độ trong suốt của khí quyển qua từng năm."
+)
 
 monthly_anom = df_anom.groupby(["year", "month"])[rad_col].mean().reset_index()
 heatmap_data = monthly_anom.pivot(index="year", columns="month", values=rad_col)

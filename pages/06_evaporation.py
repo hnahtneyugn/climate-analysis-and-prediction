@@ -73,9 +73,9 @@ st.markdown("---")
 
 st.subheader("1. Lượng bốc hơi thực tế và lượng bốc hơi tiềm năng")
 st.markdown(
-    "Actual and potential evaporation averaged by month over 45 years. "
-    "The shaded area represents the **evaporative deficit** — larger gaps "
-    "indicate moisture imbalance at the surface."
+    "Lượng bốc hơi thực tế và tiềm năng trung bình theo tháng trong suốt 45 năm. "
+    "Vùng được tô màu đại diện cho **thâm hụt bốc hơi** — khoảng cách giữa hai đường càng lớn "
+    "càng cho thấy sự mất cân bằng độ ẩm nghiêm trọng trên bề mặt đất."
 )
 
 fig1 = go.Figure()
@@ -121,9 +121,9 @@ st.markdown("---")
 
 st.subheader("2. Chu kỳ mùa và xu hướng dài hạn của hệ số bốc hơi (EF)")
 st.markdown(
-    "**Left:** Monthly climatological EF (actual / potential evaporation).  \n"
-    "**Right:** Annual mean EF with linear trend — a declining trend signals "
-    "long-term surface drying."
+    "**Bên trái:** Chu kỳ khí hậu của hệ số EF theo từng tháng (tỷ lệ giữa bốc hơi thực tế và tiềm năng).  \n"
+    "**Bên phải:** Giá trị EF trung bình hàng năm cùng đường xu hướng tuyến tính — xu hướng giảm là dấu hiệu "
+    "cho thấy bề mặt đất đang trở nên khô hạn hơn trong dài hạn."
 )
 
 annual_ef = df_daily_idx["ef"].resample("YE").mean()
@@ -178,9 +178,9 @@ st.markdown("---")
 
 st.subheader("3. Heatmap mức độ thâm hụt bốc hơi qua các tháng trong các năm")
 st.markdown(
-    "Monthly evaporative deficit anomaly (DEF = PET − ET). "
-    "**Red** = atmosphere more water-stressed than average; "
-    "**Blue** = less stressed."
+    "Dị thường thâm hụt bốc hơi hàng tháng (DEF = PET − ET). "
+    "**Màu đỏ** thể hiện khí quyển đang thiếu hụt nước (water-stressed) nhiều hơn mức trung bình; "
+    "**Màu xanh** thể hiện mức độ thâm hụt ít hơn."
 )
 
 df_monthly_def = df_daily_idx["def"].resample("MS").mean().to_frame()
@@ -216,8 +216,8 @@ st.markdown("---")
 
 st.subheader("4. Xu hướng lâu dài — Bốc hơi thực tế và tiềm năng")
 st.markdown(
-    "Annual mean actual evaporation (E) and potential evaporation (Ep) "
-    "with linear trend lines — divergence signals growing moisture demand."
+    "Giá trị trung bình hàng năm của bốc hơi thực tế (E) và bốc hơi tiềm năng (Ep) "
+    "với các đường xu hướng tuyến tính — các tín hiệu phân kỳ cho thấy nhu cầu độ ẩm đang tăng."
 )
 
 df_annual = df_daily_idx[["evap", "pevap"]].resample("YE").mean()
@@ -282,8 +282,8 @@ st.markdown("---")
 
 st.subheader("5. Mức độ căng thẳng của nước (Water Stress Ratio)")
 st.markdown(
-    "Stress ratio = Ep / E. A value ≈ 1 means adequate surface moisture; "
-    "values >> 1 indicate severe drought."
+    "Chỉ số căng thẳng (Stress ratio) = Ep / E. Giá trị xấp xỉ 1 cho thấy độ ẩm bề mặt đầy đủ; "
+    "giá trị càng lớn hơn 1 (>> 1) biểu thị tình trạng hạn hán nghiêm trọng."
 )
 
 clim_stress  = df_daily.groupby(df_daily["time"].dt.month)["stress_ratio"].mean()
@@ -332,9 +332,9 @@ st.markdown("---")
 
 st.subheader("6. So sánh sự phân bố theo từng thập kỉ")
 st.markdown(
-    "Violin plot of actual evaporation by decade, split by wet season "
-    "(May-Oct) and dry season (Nov-Apr). Narrowing upper tails in dry "
-    "seasons reveal declining evaporation capacity over time."
+    "Biểu đồ Violin của lượng bốc hơi thực tế theo từng thập kỷ, được chia theo mùa mưa "
+    "(tháng 5-10) và mùa khô (tháng 11-4). Phần 'đuôi' phía trên của biểu đồ thu hẹp dần "
+    "trong mùa khô cho thấy khả năng bốc hơi của bề mặt đang suy giảm theo thời gian."
 )
 
 fig6 = go.Figure()

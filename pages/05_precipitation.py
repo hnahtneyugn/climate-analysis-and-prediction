@@ -40,6 +40,10 @@ st.markdown("---")
 
 # Section 1 — Seasonal climatology
 st.subheader("1. Khí hậu học lượng mưa theo mùa")
+st.markdown(
+    "Phân tích lượng mưa trung bình hàng ngày theo tháng, được chia thành **Mưa tầng** (mưa diện rộng, kéo dài) và **Mưa đối lưu** (mưa rào mạnh, cục bộ). "
+    "Sự phân hóa này giúp hiểu rõ cơ chế gây mưa tại Miền Trung, đặc biệt là sự đóng góp của bão và gió mùa."
+)
 
 fig1 = go.Figure()
 fig1.add_trace(go.Scatter(x=MONTH_LABELS, y=clim["tp"],
@@ -56,6 +60,10 @@ st.markdown("---")
 
 # Section 2 — Annual total trend
 st.subheader("2. Biến động lượng mưa tổng cộng hàng năm")
+st.markdown(
+    "Biểu đồ thể hiện tổng lượng mưa tích lũy qua từng năm. Đường trung bình trượt 5 năm và đường xu hướng tuyến tính "
+    "giúp xác định liệu khu vực đang có xu hướng trở nên ẩm ướt hơn hay khô hạn hơn trong dài hạn."
+)
 
 x_years = df_yearly_sum.index.year
 y_total = df_yearly_sum["tp"]
@@ -76,6 +84,10 @@ st.markdown("---")
 
 # Section 3 — Convective fraction trend
 st.subheader("3. Xu hướng tỷ lệ mưa đối lưu (Convective Fraction)")
+st.markdown(
+    "Tỷ lệ mưa đối lưu (CF) phản ánh tính chất cực đoan của mưa. Xu hướng tăng của chỉ số này thường đi kèm với "
+    "sự gia tăng các trận mưa rào cường độ mạnh trong thời gian ngắn, gây nguy cơ lũ quét và ngập úng đô thị cao hơn."
+)
 
 x_yr_m = df_yearly_mean.index.year
 y_cf   = df_yearly_mean["cf"]
@@ -95,6 +107,10 @@ st.markdown("---")
 
 # Section 4 — Monthly anomaly heatmap
 st.subheader("4. Ma trận dị thường lượng mưa hàng tháng")
+st.markdown(
+    "Heatmap cho thấy sự sai lệch lượng mưa so với trung bình khí hậu. **Màu xanh dương** chỉ các tháng mưa nhiều bất thường (bão, lụt), "
+    "trong khi **Màu nâu** chỉ các giai đoạn khô hạn nghiêm trọng."
+)
 
 pivot = df_monthly.pivot(index="year", columns="month", values="tp_anom")
 fig4 = go.Figure(data=go.Heatmap(
@@ -110,6 +126,10 @@ st.markdown("---")
 
 # Section 5 — Convective vs stratiform stackplot
 st.subheader("5. Phân hóa tính chất mưa: Đối lưu vs Tầng")
+st.markdown(
+    "Biểu đồ chồng minh họa sự đóng góp tương đối giữa mưa đối lưu và mưa tầng qua từng tháng trong chuỗi dữ liệu lịch sử. "
+    "Giúp nhận diện sự thay đổi trong cấu trúc các hệ thống mây gây mưa qua các thập kỷ."
+)
 
 fig5 = go.Figure()
 fig5.add_trace(go.Scatter(x=df_monthly.index, y=df_monthly["cp"],
@@ -126,6 +146,10 @@ st.markdown("---")
 
 # Section 6 — Extreme rainfall days
 st.subheader("6. Tần suất các ngày mưa cực đoan theo ngưỡng")
+st.markdown(
+    "Thống kê số lượng ngày trong năm có lượng mưa vượt các ngưỡng cường độ khác nhau (từ nhẹ đến rất to). "
+    "Sự gia tăng số ngày mưa 'To' và 'Rất to' là chỉ dấu quan trọng cho sự biến động bất thường của thời tiết."
+)
 
 thresholds = {"Nhẹ (>1mm)": 1, "Vừa (>10mm)": 10, "To (>25mm)": 25, "Rất to (>40mm)": 40}
 fig6 = make_subplots(rows=2, cols=2,
@@ -144,6 +168,10 @@ st.markdown("---")
 
 # Section 7 — ECDF by decade
 st.subheader("7. Sự dịch chuyển phân phối lượng mưa theo thập kỷ (ECDF)")
+st.markdown(
+    "Hàm phân phối tích lũy thực nghiệm (ECDF) cho thấy xác suất xuất hiện của các mức cường độ mưa khác nhau. "
+    "Sự dịch chuyển của các đường cong qua từng thập kỷ giúp xác định xem các trận mưa lớn đang trở nên phổ biến hơn hay không."
+)
 
 fig7 = go.Figure()
 colors_decade = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"]
@@ -166,6 +194,10 @@ st.markdown("---")
 
 # Section 8 — Dry spell
 st.subheader("8. Độ dài đợt khô hạn nhất trong năm (Dry Spell Length)")
+st.markdown(
+    "Theo dõi số ngày liên tiếp tối đa trong năm có lượng mưa dưới 1mm. "
+    "Độ dài đợt khô hạn là một chỉ số sống còn đối với quản lý tài nguyên nước và lập kế hoạch sản xuất nông nghiệp."
+)
 
 def get_max_dry_spell(series):
     is_dry = series < 1.0

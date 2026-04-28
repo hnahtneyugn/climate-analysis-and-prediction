@@ -44,6 +44,10 @@ st.markdown("---")
 
 # Section 1 — Monthly climatology
 st.subheader("1. Phân tích tốc độ dòng chảy bề mặt theo tháng")
+st.markdown(
+    "Biểu đồ so sánh giữa **Dòng chảy bề mặt (SR)** - lượng nước chảy tràn trên mặt đất, và **Dòng chảy ngầm (SSR)** - lượng nước thấm qua các tầng đất và thoát ra sông suối. "
+    "Sự chênh lệch này giúp hiểu rõ cơ chế phản ứng của lưu vực trước lượng mưa theo từng mùa tại Miền Trung."
+)
 
 months = df_clim["month"].values if "month" in df_clim.columns else range(1, 13)
 
@@ -63,6 +67,10 @@ st.markdown("---")
 
 # Section 2 — Monthly stackplot
 st.subheader("2. Xu hướng phân chia dòng chảy")
+st.markdown(
+    "Biểu đồ chồng thể hiện sự thay đổi cấu trúc dòng chảy từ năm 1980 đến nay. "
+    "Quan sát tỷ lệ giữa phần màu cam (bề mặt) và màu xanh (ngầm) giúp nhận diện các giai đoạn mà bề mặt đất bị bão hòa nước hoặc mất khả năng thẩm thấu."
+)
 
 fig2 = go.Figure()
 fig2.add_trace(go.Scatter(x=df_monthly["time"], y=df_monthly["sr"],
@@ -79,6 +87,10 @@ st.markdown("---")
 
 # Section 3 — Surface fraction trend
 st.subheader("3. Xu hướng lâu dài của tỉ lệ nước bề mặt")
+st.markdown(
+    "Chỉ số SF (Surface Fraction) là tỷ lệ dòng chảy bề mặt trên tổng dòng chảy. "
+    "**Xu hướng tăng** của SF là một dấu hiệu cảnh báo nguy cơ lũ quét gia tăng và khả năng giữ nước của đất suy giảm do thay đổi lớp phủ hoặc cường độ mưa cực đoan."
+)
 
 annual_sf = df_daily.groupby("year")["sf"].mean()
 years_sf  = annual_sf.index.values
@@ -107,6 +119,10 @@ st.markdown("---")
 
 # Section 4 — Anomaly heatmap
 st.subheader("4. Heatmap dị thường tốc độ dòng chảy bề mặt")
+st.markdown(
+    "Nhận diện các tháng có lượng dòng chảy cao đột biến (**màu xanh đậm**) hoặc thấp kỷ lục (**màu nâu**). "
+    "Biểu đồ này rất hữu ích để xác định các năm có hiện tượng bão lũ dồn dập hoặc hạn hán thủy văn kéo dài."
+)
 
 pivot_anom = df_daily.pivot_table(index="year", columns="month", values="anom_tr", aggfunc="mean")
 fig4 = go.Figure(data=go.Heatmap(
@@ -122,6 +138,11 @@ st.markdown("---")
 
 # Section 5 — Extreme frequency
 st.subheader("5. Dấu hiệu tần suất dòng chảy cực đoan")
+st.markdown(
+    "Thống kê số lượng ngày trong năm có dòng chảy vượt ngưỡng 95% (P95).  \n"
+    "- **Dòng chảy bề mặt cực đoan (trên):** Chỉ dấu cho nguy cơ lũ quét và ngập lụt diện rộng.  \n"
+    "- **Dòng chảy ngầm cực đoan (dưới):** Chỉ dấu cho các giai đoạn bổ cập nước ngầm dồi dào."
+)
 
 q95_sr  = df_daily["sr"].quantile(0.95)
 q95_ssr = df_daily["ssr"].quantile(0.95)

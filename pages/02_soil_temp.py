@@ -41,6 +41,11 @@ st.markdown("---")
 
 # Section 1 — Heatmap soil heat penetration
 st.subheader("1. Sự lan truyền sóng nhiệt theo độ sâu đất & Dấu hiệu nóng lên")
+st.markdown(
+    "Biểu đồ Heatmap thể hiện sự thâm nhập của nhiệt lượng từ bề mặt xuống các tầng đất sâu theo từng tháng. "
+    "Việc so sánh giữa thập kỷ 1980 (giữa) và giai đoạn gần đây (phải) giúp làm rõ sự gia tăng nhiệt độ tích tụ "
+    "trong lòng đất qua hơn 40 năm."
+)
 
 clim_80s    = df_monthly.loc["1980":"1989"].groupby(df_monthly.loc["1980":"1989"].index.month).mean()
 clim_recent = df_monthly.loc["2015":"2024"].groupby(df_monthly.loc["2015":"2024"].index.month).mean()
@@ -72,6 +77,10 @@ st.markdown("---")
 
 # Section 2 — Seasonal cycle all layers
 st.subheader("2. Chu kỳ mùa nhiệt độ đất: Độ trễ pha và suy giảm biên độ")
+st.markdown(
+    "Quan sát chu kỳ mùa ở các tầng đất khác nhau. Các tầng đất càng sâu thì nhiệt độ càng ổn định (biên độ dao động thấp) "
+    "và thời gian đạt nhiệt độ cực đại sẽ **trễ hơn** đáng kể so với bề mặt do khả năng dẫn nhiệt của đất có giới hạn."
+)
 
 fig2 = go.Figure()
 for var, color, name in zip(soil_vars, COLORS, layer_names):
@@ -85,6 +94,10 @@ st.markdown("---")
 
 # Section 3 — Long-term warming trend per layer
 st.subheader("3. Xu hướng nóng lên dài hạn tại các tầng đất")
+st.markdown(
+    "Theo dõi xu hướng nóng lên của đất từ năm 1980 đến nay. Đường nét đứt thể hiện tốc độ gia tăng nhiệt độ trên mỗi thập kỷ. "
+    "Mặc dù nằm sâu dưới lòng đất, các tầng đất 100cm và 289cm vẫn đang nóng lên một cách rõ rệt."
+)
 
 fig3 = go.Figure()
 x_vals = df_yearly.index.year.values
@@ -105,6 +118,10 @@ st.markdown("---")
 
 # Section 4 — Anomaly heatmaps
 st.subheader("4. Ma trận dị thường nhiệt độ đất: Sự thẩm thấu của các năm cực đoan")
+st.markdown(
+    "Các ma trận dị thường thể hiện những giai đoạn đất nóng hơn (đỏ) hoặc lạnh hơn (xanh) trung bình lịch sử. "
+    "Có thể thấy rõ sự 'thẩm thấu' của các đợt nóng kỷ lục từ tầng mặt (7cm) lan dần xuống các tầng sâu bên dưới."
+)
 
 vmax_anom = float(df_anomaly[soil_vars].abs().max().max())
 fig4 = make_subplots(rows=2, cols=2,
@@ -127,6 +144,10 @@ st.markdown("---")
 
 # Section 5 — Thermal lag
 st.subheader("5. Lượng hóa Độ trễ pha nhiệt (Thermal Lag) theo Độ sâu")
+st.markdown(
+    "Phân tích mối quan hệ giữa độ sâu và thời điểm nhiệt độ đạt đỉnh trong năm. "
+    "Đường xu hướng cho thấy nhiệt độ đất mất khoảng **hơn 1 tháng** để truyền sóng nhiệt xuống mỗi mét độ sâu."
+)
 
 peak_months = climatology[soil_vars].idxmax().values.astype(float)
 slope_lag, int_lag, r_lag, _, _ = stats.linregress(depths, peak_months)
@@ -147,6 +168,10 @@ st.markdown("---")
 
 # Section 6 — Cross-correlation
 st.subheader("6. Tương quan và Cross-Correlation giữa các tầng đất")
+st.markdown(
+    "**Bên trái:** Tương quan tức thời cho thấy tầng mặt liên kết rất chặt chẽ với các tầng kế cận. "
+    "**Bên phải:** Phân tích Cross-correlation cho thấy sự ảnh hưởng từ tầng 7cm mất một khoảng thời gian (ngày) để tác động mạnh nhất đến tầng 289cm."
+)
 
 fig6 = make_subplots(rows=1, cols=2,
     subplot_titles=("Tương quan Pearson (Độ trễ = 0)", "Cross-Correlation: Level 1 vs Level 4"))
@@ -179,6 +204,10 @@ st.markdown("---")
 
 # Section 7 — Soil Level 1 vs T2m
 st.subheader("7. So sánh tương tác: Nhiệt độ bề mặt đất (Level 1) vs Nhiệt độ không khí")
+st.markdown(
+    "So sánh nhiệt độ giữa môi trường đất và không khí xung quanh. Phần tô màu đỏ chỉ ra những năm "
+    "mà bề mặt đất hấp thụ và giữ nhiệt cao hơn đáng kể so với nhiệt độ không khí, ảnh hưởng đến quá trình trao đổi năng lượng bề mặt."
+)
 
 fig7 = go.Figure()
 fig7.add_trace(go.Scatter(x=df_yearly.index.year, y=df_yearly["t2m"],

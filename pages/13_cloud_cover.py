@@ -35,6 +35,10 @@ st.markdown("---")
 
 # Section 1 — Cloud regime seasonal
 st.subheader("1. Khí hậu học mây theo mùa (Cloud Regime)")
+st.markdown(
+    "Phác họa chu kỳ thay đổi của các tầng mây (thấp, trung, cao) và tổng lượng mây trung bình qua các tháng trong năm. "
+    "Sự biến động này ảnh hưởng trực tiếp đến cán cân bức xạ mặt trời chiếu xuống bề mặt đất."
+)
 
 fig1 = go.Figure()
 fig1.add_trace(go.Scatter(x=MONTH_LABELS, y=clim["tcc"],
@@ -54,6 +58,10 @@ st.markdown("---")
 
 # Section 2 — LHD dominance index
 st.subheader("2. Chỉ số thống trị và xu hướng thay đổi cấu trúc")
+st.markdown(
+    "Chỉ số LHD (LCC - HCC) giúp xác định tầng mây nào chiếm ưu thế tại địa phương. "
+    "Giá trị dương cho thấy mây tầng thấp chiếm đa số, trong khi xu hướng dài hạn giúp nhận diện sự thay đổi cấu trúc mây do biến đổi khí hậu."
+)
 
 x_yr = df_yearly.index.year.values
 y_lhd = df_yearly["lhd"].values
@@ -93,6 +101,9 @@ st.markdown("---")
 
 # Section 3 — TCC anomaly heatmap
 st.subheader("3. Ma trận dị thường tổng lượng mây")
+st.markdown(
+    "Ma trận này giúp nhận diện các tháng và năm có độ che phủ mây cao bất thường (màu xanh dương) hoặc thấp bất thường (màu đỏ) so với trung bình khí hậu 45 năm qua."
+)
 
 pivot = df_monthly.pivot(index="year", columns="month", values="tcc_anom")
 fig3 = go.Figure(data=go.Heatmap(
@@ -108,6 +119,9 @@ st.markdown("---")
 
 # Section 4 — Cloud structure stackplot
 st.subheader("4. Biến động thành phần cấu trúc mây (1980-2024)")
+st.markdown(
+    "Biểu đồ chồng thể hiện sự thay đổi về tỷ trọng của mây tầng thấp, tầng giữa và tầng cao trong tổng lượng mây che phủ qua chuỗi thời gian dài hạn."
+)
 
 fig4 = go.Figure()
 fig4.add_trace(go.Scatter(x=df_monthly.index, y=df_monthly["lcc"],
@@ -129,6 +143,10 @@ st.markdown("---")
 
 # Section 5 — Clear / overcast day frequency
 st.subheader("5. Tần suất các ngày quang mây và u ám")
+st.markdown(
+    "Thống kê số lượng ngày trong năm có bầu trời quang đãng (TCC < 0.1) và những ngày u ám (TCC > 0.9). "
+    "Sự thay đổi tần suất này cho thấy các biến chuyển trong trạng thái ổn định của khí quyển."
+)
 
 overcast = (df_daily["tcc"] > 0.9).resample("1YE").sum()
 clear    = (df_daily["tcc"] < 0.1).resample("1YE").sum()
@@ -151,6 +169,9 @@ st.markdown("---")
 
 # Section 6 — Violin plot by decade
 st.subheader("6. So sánh phân phối mây qua các thập kỷ")
+st.markdown(
+    "So sánh phân phối xác suất của lượng mây qua từng thập kỷ. Sự dịch chuyển của biểu đồ Violin giúp phát hiện những thay đổi dài hạn trong cấu trúc che phủ mây tại khu vực."
+)
 
 decades = {"1980s": ("1980","1989"), "1990s": ("1990","1999"),
            "2000s": ("2000","2009"), "2010s": ("2010","2019"), "2020s": ("2020","2024")}

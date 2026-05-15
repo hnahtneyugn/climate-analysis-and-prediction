@@ -5,3 +5,8 @@
 .vscode
 *.zip
 *.parquet
+*.toc
+*.log
+*.aux
+*.out
+*.gz

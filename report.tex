@@ -1,0 +1,526 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage{vntex}
+
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{longtable}
+
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+}
+
+
+\begin{document}
+
+\begin{titlepage}
+    \centering 
+    \textbf{\Large TRƯỜNG ĐẠI HỌC CÔNG NGHỆ $-$ ĐHQGHN}\\
+    \textbf{\Large VIỆN TRÍ TUỆ NHÂN TẠO}\\[0.5cm]
+    \rule{10cm}{0.4pt}\\
+    
+    \vspace{2cm}
+    \begin{minipage}{0.45\textwidth}
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{images/uet_logo.jpg}
+        \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{images/ai_logo.png}
+        \end{center}
+    \end{minipage}
+    
+    \vspace{1.5cm}
+    {\large \textbf{BÁO CÁO HỌC PHẦN}}\\[0.5cm]
+    {\large \textbf{DỰ ÁN}}\\[0.5cm]
+
+    \vspace{5pt}
+    {\large{
+    Đề tài: \textbf{Phân tích các yếu tố khí hậu tại miền Trung Việt Nam}
+    }}\\[0.25cm]
+
+    \vspace{12pt}
+    {\large
+    \begin{tabular}{>{\bfseries}l l l}
+        Giảng viên hướng dẫn:   & TS. Nguyễn Khắc Tiên Phước \\
+                                & Ths. Ngô Minh Hương \\
+    \end{tabular}
+    }\\[0.5 cm]
+    
+    \vspace{12pt} 
+    {\large
+    \begin{tabular}{>{\bfseries}l l l}
+        Thành viên nhóm:    & Tạ Nguyên Thành  & 23020437 \\
+                            & Phạm Tiến Dũng   & 23020345 \\
+    \end{tabular}
+    }\\[0.5 cm]
+    
+    \vfill
+    \centering
+    \textbf{Hà Nội, 2026}
+\end{titlepage}
+
+\newpage
+\begin{center}
+    \textbf{Ý kiến đánh giá:}
+\end{center}
+
+\vspace{0.2cm}
+
+% Dotted lines for comments
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}\\[0.2cm]
+\noindent\makebox[\linewidth]{\dotfill}
+
+\noindent\hspace{3cm} Điểm số \dotfill{} Điểm chữ \dotfill
+
+\vspace{1.5cm}
+
+\begin{center}
+    Hà Nội, ngày \ldots, tháng \ldots, năm 2026\\[0.2cm]
+    \textbf{Giảng viên đánh giá}\\[0.1cm]
+    (Ký, ghi rõ họ tên)
+\end{center}
+
+
+% Lời cảm ơn
+\newpage
+
+\begin{center}
+    \textbf{\large LỜI CẢM ƠN}
+\end{center}
+
+Lời đầu tiên, nhóm chúng em xin được gửi lời cảm ơn chân thành nhất đến \textbf{TS. Nguyễn Khắc Tiên Phước} và \textbf{Ths. Ngô Minh Hương}. Trong quá trình học tập và tìm hiểu môn Dự án, hai bọn em đã nhận được rất nhiều sự quan tâm, giúp đỡ, hướng dẫn tận tâm huyết và tận tình của cả Thầy và Cô. Hai người đã giúp chúng em tích lũy thêm nhiều kiến thức về môn học này, cũng như đã tư vấn tận tình, trình bày các phương án hợp lý để có thể hoàn thành được đề tài: \textbf{Phân tích các yếu tố khí hậu tại miền Trung Việt Nam}.
+
+Trong bài làm này chắc chắn khó tránh khỏi những thiếu sót do kiến thức và kinh nghiệm còn hạn chế. Do đó, chúng em kính mong nhận được những lời góp ý của Thầy/Cô để bài của nhóm chúng em ngày càng hoàn thiện hơn.
+
+Chúng em xin chân thành cảm ơn!
+
+% Tổng quan
+\newpage
+
+\begin{center}
+    \textbf{\large TỔNG QUAN}
+\end{center}
+
+Trong số các khu vực ở Việt Nam, thì miền Trung là nơi có khí hậu bất thường cũng như khắc nghiệt nhất. Vừa phải chịu đồng thời ảnh hưởng của địa hình Trường Sơn, vừa chịu các yếu tố từ Biển Đông và các hệ thống thời tiết nhiệt đới khác, khu vực này thường xuyên phải hứng chịu những thiên tai cũng như các hình thái thời tiết cực đoan. Việc phân tích và hiểu rõ đặc trưng khí hậu của khu vực này không chỉ có ý nghĩa khoa học mà còn đóng vai trò thiết yếu trong hoạch định chính sách, phát triển kinh tế-xã hội và ứng phó với biến đổi khí hậu.
+
+Trong báo cáo này, chúng em xin trình bày kết quả về việc phân tích các yếu tố khí hậu ở khu vực miền Trung Việt Nam. Thông qua việc xem xét và đánh giá các yếu tố như nhiệt độ, lượng mưa, độ ẩm, chế độ gió và rất nhiều các yếu tố khí hậu khác, chúng em đã làm rõ những đặc điểm nổi bật cũng như sự phân hóa khí hậu trong nội vùng. Từ những kết quả thu được, nhóm đã xây dựng notebook và dashboard để người xem có thể dễ dàng hiểu được tình hình thực tế khí hậu khu vực này. Nhóm chúng em cũng mong muốn rằng có thể góp phần công sức nào đó, cung cấp cơ sở khoa học phục vụ cho việc hiểu biết sâu hơn về đặc trưng khí hậu của khu vực.
+
+% Mục lục
+\newpage
+\tableofcontents
+\newpage
+\section{Giới thiệu}
+
+\subsection{Tính cấp thiết của đề tài}
+
+Miền Trung Việt Nam là dải đất hẹp nằm kẹp giữa dãy Trường Sơn ở phía Tây và Biển Đông ở phía Đông, tạo nên một vị trí địa lý đặc thù không nơi nào khác ở Việt Nam có được. Chính cấu trúc địa hình này đã định hình nên một chế độ khí hậu vô cùng phức tạp và khắc nghiệt. Dãy Trường Sơn đóng vai trò như một bức tường chắn gió tự nhiên, ngăn cản luồng không khí ẩm từ phía Tây, đồng thời tạo ra hiệu ứng phơn khiến mùa khô ở miền Trung kéo dài và gay gắt hơn so với các khu vực khác trong cả nước. Trong khi đó, Biển Đông lại cung cấp nguồn ẩm dồi dào, kết hợp với các hệ thống thời tiết nhiệt đới như bão, áp thấp nhiệt đới và dải hội tụ nhiệt đới, khiến mùa mưa tập trung dữ dội trong một khoảng thời gian rất ngắn. Hệ quả là miền Trung thường xuyên phải đối mặt với hai thái cực khắc nghiệt: hạn hán kéo dài vào mùa khô và lũ lụt nghiêm trọng vào mùa mưa, gây thiệt hại lớn về người và tài sản qua từng năm.
+
+Không chỉ dừng lại ở sự đối lập giữa hai mùa, miền Trung còn là khu vực hứng chịu nhiều loại hình thiên tai khác nhau với tần suất cao nhất cả nước. Đây là nơi đổ bộ của phần lớn các cơn bão từ Biển Đông vào đất liền mỗi năm, với cường độ thường rất mạnh do địa hình bờ biển thoai thoải và dòng nước biển ấm. Bên cạnh bão, khu vực này còn thường xuyên chịu ảnh hưởng của lũ quét, sạt lở đất ở vùng núi, triều cường và xâm nhập mặn ở vùng ven biển. Sự chồng chéo của nhiều loại hình thiên tai này khiến miền Trung trở thành một trong những khu vực dễ bị tổn thương nhất trước các rủi ro khí hậu, đặc biệt là đối với cộng đồng dân cư sống phụ thuộc vào nông nghiệp và ngư nghiệp.
+
+Trong bối cảnh biến đổi khí hậu toàn cầu đang ngày càng gia tăng, những thách thức mà miền Trung phải đối mặt được dự báo sẽ trở nên thất thường và dữ dội hơn trong những thập kỷ tới. Các hiện tượng cực đoan có xu hướng xuất hiện với tần suất cao hơn, cường độ mạnh hơn và khó dự báo hơn, đặt ra yêu cầu cấp bách về việc xây dựng một bức tranh phân tích khí hậu toàn diện và có hệ thống cho khu vực. Chính vì vậy, việc nghiên cứu, phân tích và hiểu rõ các đặc trưng khí hậu của miền Trung không chỉ có ý nghĩa khoa học thuần túy mà còn là nền tảng thiết yếu cho công tác hoạch định chính sách, quy hoạch đô thị, phát triển nông nghiệp bền vững và ứng phó hiệu quả với thiên tai tại địa phương.
+
+\subsection{Mục tiêu nghiên cứu}
+
+Dự án này được triển khai với mục tiêu đó là phân tích một cách chi tiết các khía cạnh trong khí hậu tại khu vực miền Trung Việt Nam. Không chỉ phân tích, mà dự án còn là xem xét xu hướng trong suốt nhiều năm, thứ có thể là tiền đề để dự đoán cho tương lai. Từ những dữ liệu thu được, nhóm em đã xây dựng các notebook, cũng như cụ thể hơn là một dashboard để trực quan hoá kết quả phân tích, cũng như dễ dàng truy cập hơn cho mọi người. 
+
+Tất cả những kết quả thu được của nhóm chúng em đều phục vụ cho mục đích cung cấp một cơ sở khoa học, phục vụ cho nhu cầu hiểu biết sâu hơn về khí hậu khu vực cho bất kì ai, dù là nhà khoa học, người dân hay những người khác. Trên hết, kết quả phân tích hoàn toàn có thể làm nền tảng để dự đoán khí hậu tương lai tại đây.
+
+\subsection{Câu hỏi nghiên cứu}
+
+Khi thực hiện dự án này, nhóm chúng em muốn tập trung trả lời và giải quyết những câu hỏi nghiên cứu chính sau, liên quan đến khí hậu khu vực và những tác nhân gây ra yếu tố đó:
+
+\begin{itemize}
+    \item \textbf{Các yếu tố khí hậu đặc trưng của miền Trung Việt Nam là gì?}: Liệu các yếu tố khí hậu cơ bản như nhiệt độ không khí, lượng mưa, độ ẩm, chế độ gió, bức xạ mặt trời và các yếu tố liên quan có thể được phân tích và mô tả một cách hệ thống để làm rõ đặc trưng khí hậu của khu vực miền Trung Việt Nam hay không?
+    \item \textbf{Những yếu tố nào tác động chính đến sự khắc nghiệt của khí hậu miền Trung?}: Trong số các yếu tố địa lý và khí tượng như địa hình Trường Sơn, Biển Đông, bão nhiệt đới và dải hội tụ nhiệt đới, yếu tố nào đóng vai trò chủ đạo trong việc tạo nên sự khắc nghiệt và bất thường của khí hậu miền Trung, và chúng tương tác với nhau như thế nào để dẫn đến các hiện tượng cực đoan đặc trưng của khu vực?
+\end{itemize}
+
+\section{Dữ liệu và phương pháp}
+
+\subsection{Dữ liệu}
+
+Toàn bộ dữ liệu của nhóm được lấy từ dataset \href{https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview}{ERA5}. Đây là một bộ dữ liệu tái phân tích thế hệ thứ năm của ECMWF, cung cấp các ước tính chi tiết đến từng giờ cho hàng loạt biến khí quyển, sóng biển và bề mặt đất trên toàn cầu, với dữ liệu có sẵn từ năm 1940 đến nay. Về mặt địa lý, trên lưới kinh độ - vĩ độ, dữ liệu được đo chi tiết với mỗi điểm dữ liệu sẽ bao trùm những ô 0.25 độ. Dữ liệu này được lấy phần reanalysis, tức là phương pháp kết hợp các dữ liệu quan sát thời tiết trong quá khứ với các mô hình dự báo hiện đại để tạo ra một chuỗi thời gian đồng nhất về các yếu tố khí hậu. Các biến môi trường được lấy nằm ở bảng sau:
+
+\begin{longtable}{|p{6cm}|p{5cm}|p{4cm}|}
+\hline
+\textbf{Tên biến gốc} & \textbf{Tên tiếng Anh} & \textbf{Tên tiếng Việt} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Tên biến gốc} & \textbf{Tên tiếng Anh} & \textbf{Tên tiếng Việt} \\
+\hline
+\endhead
+
+\texttt{temperature\_\allowbreak 2m} & Air Temperature at 2m & Nhiệt độ không khí \\
+\texttt{maximum\_\allowbreak 2m\_\allowbreak temperature} & Maximum Air Temperature & Nhiệt độ cực đại ngày \\
+\texttt{skin\_\allowbreak temperature} & Skin Temperature & Nhiệt độ bề mặt đất \\
+\hline
+
+\texttt{soil\_\allowbreak temperature\_\allowbreak level\_\allowbreak 1} & Soil Temperature Layer 1 & Nhiệt độ tầng đất 1 \\
+\texttt{soil\_\allowbreak temperature\_\allowbreak level\_\allowbreak 2} & Soil Temperature Layer 2 & Nhiệt độ tầng đất 2 \\
+\texttt{soil\_\allowbreak temperature\_\allowbreak level\_\allowbreak 3} & Soil Temperature Layer 3 & Nhiệt độ tầng đất 3 \\
+\texttt{soil\_\allowbreak temperature\_\allowbreak level\_\allowbreak 4} & Soil Temperature Layer 4 & Nhiệt độ tầng đất 4 \\
+\hline
+
+\texttt{dewpoint\_\allowbreak temperature\_\allowbreak 2m} & Dewpoint Temperature at 2m & Nhiệt độ điểm sương \\
+\hline
+
+\texttt{total\_\allowbreak column\_\allowbreak water\_\allowbreak vapour} & Total Column Water Vapour & Tổng lượng hơi nước khí quyển \\
+\texttt{total\_\allowbreak column\_\allowbreak cloud\_\allowbreak liquid\_\allowbreak water} & Total Column Cloud Liquid Water & Lượng nước lỏng trong mây \\
+\texttt{total\_\allowbreak column\_\allowbreak cloud\_\allowbreak ice\_\allowbreak water} & Total Column Cloud Ice Water & Lượng băng trong mây \\
+\hline
+
+\texttt{mean\_\allowbreak total\_\allowbreak precipitation\_\allowbreak rate} & Mean Total Precipitation Rate & Tốc độ mưa tổng cộng \\
+\texttt{mean\_\allowbreak convective\_\allowbreak precipitation\_\allowbreak rate} & Mean Convective Precipitation Rate & Mưa dông cục bộ \\
+\hline
+
+\texttt{mean\_\allowbreak evaporation\_\allowbreak rate} & Mean Evaporation Rate & Lượng nước bốc hơi thực tế \\
+\texttt{mean\_\allowbreak potential\_\allowbreak evaporation\_\allowbreak rate} & Mean Potential Evaporation Rate & Nhu cầu hút nước của khí quyển \\
+\hline
+
+\texttt{volumetric\_\allowbreak soil\_\allowbreak water\_\allowbreak layer\_\allowbreak 1} & Volumetric Soil Water Layer 1 & Độ ẩm tầng đất 1 \\
+\texttt{volumetric\_\allowbreak soil\_\allowbreak water\_\allowbreak layer\_\allowbreak 2} & Volumetric Soil Water Layer 2 & Độ ẩm tầng đất 2 \\
+\texttt{volumetric\_\allowbreak soil\_\allowbreak water\_\allowbreak layer\_\allowbreak 3} & Volumetric Soil Water Layer 3 & Độ ẩm tầng đất 3 \\
+\texttt{volumetric\_\allowbreak soil\_\allowbreak water\_\allowbreak layer\_\allowbreak 4} & Volumetric Soil Water Layer 4 & Độ ẩm tầng đất 4 \\
+\hline
+
+\texttt{mean\_\allowbreak runoff\_\allowbreak rate} & Mean Runoff Rate & Tốc độ dòng chảy \\
+\texttt{mean\_\allowbreak surface\_\allowbreak runoff\_\allowbreak rate} & Mean Surface Runoff Rate & Nước chảy tràn bề mặt \\
+\texttt{mean\_\allowbreak sub\_\allowbreak surface\_\allowbreak runoff\_\allowbreak rate} & Mean Sub-Surface Runoff Rate & Nước ngấm xuống tầng ngầm \\
+\hline
+
+\texttt{mean\_\allowbreak surface\_\allowbreak net\_\allowbreak solar\_\allowbreak radiation\_\allowbreak flux} & Mean Surface Net Solar Radiation & Bức xạ mặt trời ròng \\
+\hline
+
+\texttt{mean\_\allowbreak surface\_\allowbreak sensible\_\allowbreak heat\_\allowbreak flux} & Mean Surface Sensible Heat Flux & Thông lượng nhiệt hiện \\
+\texttt{mean\_\allowbreak surface\_\allowbreak latent\_\allowbreak heat\_\allowbreak flux} & Mean Surface Latent Heat Flux & Thông lượng nhiệt ẩn \\
+\hline
+
+\texttt{high\_\allowbreak vegetation\_\allowbreak cover} & High Vegetation Cover & Độ che phủ rừng \\
+\texttt{leaf\_\allowbreak area\_\allowbreak index\_\allowbreak high\_\allowbreak vegetation} & Leaf Area Index High Vegetation & Chỉ số diện tích lá rừng \\
+\texttt{low\_\allowbreak vegetation\_\allowbreak cover} & Low Vegetation Cover & Độ che phủ cây bụi/nông nghiệp \\
+\texttt{leaf\_\allowbreak area\_\allowbreak index\_\allowbreak low\_\allowbreak vegetation} & Leaf Area Index Low Vegetation & Chỉ số diện tích lá cây thấp \\
+\hline
+
+\texttt{total\_\allowbreak cloud\_\allowbreak cover} & Total Cloud Cover & Tổng lượng mây \\
+\texttt{low\_\allowbreak cloud\_\allowbreak cover} & Low Cloud Cover & Mây tầng thấp \\
+\texttt{high\_\allowbreak cloud\_\allowbreak cover} & High Cloud Cover & Mây tầng cao \\
+\hline
+
+\texttt{convective\_\allowbreak available\_\allowbreak potential\_\allowbreak energy} & CAPE & Năng lượng đối lưu \\
+\texttt{total\_\allowbreak totals\_\allowbreak index} & Total Totals Index & Chỉ số thời tiết cực đoan \\
+\texttt{k\_\allowbreak index} & K-Index & Chỉ số tiềm năng giông bão \\
+\hline
+
+\texttt{u\_\allowbreak component\_\allowbreak of\_\allowbreak wind\_\allowbreak 10m} & U-Component of Wind at 10m & Gió Đông-Tây tầng thấp \\
+\texttt{v\_\allowbreak component\_\allowbreak of\_\allowbreak wind\_\allowbreak 10m} & V-Component of Wind at 10m & Gió Bắc-Nam tầng thấp \\
+\texttt{u\_\allowbreak component\_\allowbreak of\_\allowbreak wind\_\allowbreak 100m} & U-Component of Wind at 100m & Gió Đông-Tây tầng cao \\
+\texttt{v\_\allowbreak component\_\allowbreak of\_\allowbreak wind\_\allowbreak 100m} & V-Component of Wind at 100m & Gió Bắc-Nam tầng cao \\
+\texttt{vertical\_\allowbreak velocity\_\allowbreak 500hPa} & Vertical Velocity at 500hPa & Vận tốc thẳng đứng 500hPa \\
+\texttt{vertical\_\allowbreak velocity\_\allowbreak 850hPa} & Vertical Velocity at 850hPa & Vận tốc thẳng đứng 850hPa \\
+\texttt{geopotential} & Geopotential at 500hPa & Độ cao khí áp 500hPa \\
+\hline
+
+\texttt{mean\_\allowbreak vertically\_\allowbreak integrated\_\allowbreak moisture\_\allowbreak divergence} & Vertically Integrated Moisture Divergence & Độ hội tụ ẩm \\
+\hline
+
+\texttt{sea\_\allowbreak surface\_\allowbreak temperature} & Sea Surface Temp (SST) & Nhiệt độ mặt nước biển \\
+\texttt{significant\_\allowbreak height\_\allowbreak of\_\allowbreak combined\_\allowbreak wind\_\allowbreak waves\_\allowbreak and\_\allowbreak swell} & Significant Wave Height & Độ cao sóng biển \\
+\hline
+
+\caption{Danh sách các biến ERA5 sử dụng trong nghiên cứu}
+\end{longtable}
+
+Toàn bộ dữ liệu được lấy theo từng giờ một, từng ngày một, từng tháng một, trong phạm vi các năm từ năm 1980 - 2025. Trong đó, chỉ có dữ liệu từ năm 1980 - 2024 (45 năm) được phân tích, phần dữ liệu còn lại ở năm 2025 được để lại. Dữ liệu được lấy theo vĩ độ từ 10 đến 21, và kinh độ từ 103 đến 110.
+
+Format dữ liệu được lấy là NetCDF4, lưu hết về Google Drive và sau đó là máy tính cá nhân dưới dạng file zip. File zip sau khi được lưu về sẽ được giải nén, lưu riêng dưới dạng nhiều file parquet. Từ đây, với mỗi biến môi trường, các file parquet tương ứng với nó sẽ được đọc vào thành một Xarray Dataset, tiền xử lý để có thể đồng nhất tên cột. Từ một Dataset, ta sẽ biến nó thành một Xarray DataFrame, sau đó nhóm riêng ra để tạo các Pandas DataFrame. Những DataFrame cuối cùng này chính là những thứ được dùng để trải qua quá trình dày đặc các phương pháp phân tích khác nhau, với mục tiêu cho ra kết quả, insight mong muốn. 
+
+\subsection{Phương pháp}
+
+Phương pháp được sử dụng ở đây của nhóm chúng em là phân tích sự biến đổi theo thời gian của các biến môi trường, các yếu tố cực đoan, cũng như nhận diện các đặc trưng khí hậu thường thấy của khu vực. Nhìn tổng quan, các phần phân tích đều đi theo một công thức chuẩn khi phân tích khí hậu là:\newline
+\textbf{Khí hậu học (Climatology) $\rightarrow$ Biến động (Variability) $\rightarrow$ Xu hướng (Trend) $\rightarrow$ Tương quan (Correlation). }
+
+
+Cụ thể hơn, các phương pháp được sử dụng có thể liệt kê chi tiết hơn như sau:
+
+\begin{itemize}
+    \item \textbf{Đồ thị chuỗi thời gian (Time Series Line Plot):} Sử dụng để vẽ giá trị trung bình tháng hoặc năm trong suốt giai đoạn 1979–2023, thường kết hợp với đường hồi quy tuyến tính để xác định xu hướng dài hạn (tăng/giảm) và nhận diện các năm có giá trị cực đoan.
+    \item \textbf{Biểu đồ chu kỳ mùa (Seasonal Cycle / Climatology Plot):} Thể hiện giá trị trung bình của từng tháng (từ tháng 1 đến tháng 12) kèm theo dải bóng mờ biểu thị độ lệch chuẩn, giúp xác định quy luật mùa đặc trưng và thời điểm đạt đỉnh/đáy của các biến khí hậu.
+    \item \textbf{Ma trận dị thường (Anomaly Heatmap):} Trực quan hóa độ lệch của giá trị thực so với trung bình nhiều năm trên lưới thời gian (tháng vs năm), giúp phát hiện nhanh các sự kiện khí hậu lịch sử và các giai đoạn bất thường kéo dài.
+    \item \textbf{Đồ thị mật độ và phân phối (KDE hoặc ECDF Plot):} So sánh đường cong phân phối xác suất giữa các thập kỷ khác nhau để chứng minh sự dịch chuyển của khí hậu, ví dụ như sự gia tăng tần suất xuất hiện các ngưỡng nhiệt độ hoặc lượng mưa cực đoan.
+    \item \textbf{Ma trận tương quan (Correlation Matrix):} Tính toán hệ số tương quan giữa các biến số khác nhau hoặc giữa các tầng đất khác nhau để làm rõ mối quan hệ vật lý và sự tương tác giữa bề mặt đất, đại dương và khí quyển.
+    \item \textbf{Phân tích tương quan trễ (Cross-Correlation):} Xác định độ trễ thời gian (lag) trong quá trình truyền nhiệt hoặc thấm nước giữa các tầng đất, giúp hiểu rõ cơ chế phản ứng của các tầng đất sâu đối với thay đổi ở bề mặt.
+    \item \textbf{Biểu đồ Vector gió (Quiver Plot / Wind Rose):} Sử dụng các thành phần gió $u$ và $v$ để biểu diễn hướng và tốc độ gió chủ đạo, từ đó phân tích sự thay đổi trong cấu trúc hoàn lưu khí quyển và gió mùa qua các năm.
+    \item \textbf{Đồ thị mặt cắt theo độ sâu (Depth Profile):} Biểu diễn sự thay đổi của nhiệt độ và độ ẩm đất theo các tầng sâu khác nhau, giúp trực quan hóa quá trình lan truyền sóng nhiệt và sự tích trữ nước trong cấu trúc thảm thực vật.
+\end{itemize}
+
+\section{Kết quả thu được}
+
+\subsection{Nhiệt độ không khí và bề mặt}
+
+\subsubsection{Xu hướng thay đổi nhiệt độ hàng năm}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ mùa trung bình (Climatology)}
+Nội dung đang cập nhật...
+\subsubsection{Ma trận dị thường nhiệt độ hàng tháng}
+Nội dung đang cập nhật...
+\subsubsection{Tần suất các ngày nắng nóng cực đoan}
+Nội dung đang cập nhật...
+\subsubsection{Biến động biên độ nhiệt ngày (DTR)}
+Nội dung đang cập nhật...
+\subsubsection{Sự dịch chuyển phân phối nhiệt độ qua các thập kỷ}
+Nội dung đang cập nhật...
+\subsubsection{Tương quan vật lý giữa bề mặt đất và khí quyển}
+Nội dung đang cập nhật...
+
+\subsection{Nhiệt độ đất}
+
+\subsubsection{Sự lan truyền sóng nhiệt theo độ sâu đất \& Dấu hiệu nóng lên}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ mùa nhiệt độ đất: Độ trễ pha và suy giảm biên độ}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng nóng lên dài hạn tại các tầng đất}
+Nội dung đang cập nhật...
+\subsubsection{Ma trận dị thường nhiệt độ đất: Sự thẩm thấu của các năm cực đoan}
+Nội dung đang cập nhật...
+\subsubsection{Lượng hóa Độ trễ pha nhiệt (Thermal Lag) theo Độ sâu}
+Nội dung đang cập nhật...
+\subsubsection{Tương quan và Cross-Correlation giữa các tầng đất}
+Nội dung đang cập nhật...
+\subsubsection{So sánh tương tác: Nhiệt độ bề mặt đất (Level 1) vs Nhiệt độ không khí}
+Nội dung đang cập nhật...
+
+\subsection{Điểm sương và độ ẩm}
+
+\subsubsection{Khí hậu học theo mùa: Nhiệt độ điểm sương vs Nhiệt độ không khí}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ mùa và xu hướng của chênh lệch điểm sương (DPD)}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng dài hạn của Nhiệt độ điểm sương (so sánh với T2m)}
+Nội dung đang cập nhật...
+\subsubsection{Ma trận dị thường Nhiệt độ điểm sương}
+Nội dung đang cập nhật...
+\subsubsection{Tương quan Nhiệt độ điểm sương và Nhiệt độ không khí}
+Nội dung đang cập nhật...
+\subsubsection{Tần suất số ngày độ ẩm cao cực đoan}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ ngày đêm của Nhiệt độ điểm sương theo mùa}
+Nội dung đang cập nhật...
+
+\subsection{Lượng hơi nước và mây}
+
+\subsubsection{Khí hậu học mùa: Hơi nước và Thành phần mây}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ mùa của tỷ lệ băng trong mây (Ice Fraction)}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng dài hạn của Tổng hơi nước cột (TCWV)}
+Nội dung đang cập nhật...
+\subsubsection{Ma trận dị thường Hơi nước cột}
+Nội dung đang cập nhật...
+\subsubsection{Phân chia pha mây theo thời gian}
+Nội dung đang cập nhật...
+\subsubsection{Kiểm định vật lý: Hơi nước cột vs Lượng mưa}
+Nội dung đang cập nhật...
+\subsubsection{Tương quan Băng mây (CIW) vs Chỉ số CAPE}
+Nội dung đang cập nhật...
+
+\subsection{Lượng mưa}
+
+\subsubsection{Khí hậu học lượng mưa theo mùa}
+Nội dung đang cập nhật...
+\subsubsection{Biến động lượng mưa tổng cộng hàng năm}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng tỷ lệ mưa đối lưu (Convective Fraction)}
+Nội dung đang cập nhật...
+\subsubsection{Ma trận dị thường lượng mưa hàng tháng}
+Nội dung đang cập nhật...
+\subsubsection{Phân hóa tính chất mưa: Đối lưu vs Tầng}
+Nội dung đang cập nhật...
+\subsubsection{Tần suất các ngày mưa cực đoan theo ngưỡng}
+Nội dung đang cập nhật...
+\subsubsection{Sự dịch chuyển phân phối lượng mưa theo thập kỷ (ECDF)}
+Nội dung đang cập nhật...
+\subsubsection{Độ dài đợt khô hạn nhất trong năm (Dry Spell Length)}
+Nội dung đang cập nhật...
+
+\subsection{Bốc hơi}
+
+\subsubsection{Lượng bốc hơi thực tế và lượng bốc hơi tiềm năng}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ mùa và xu hướng dài hạn của hệ số bốc hơi}
+Nội dung đang cập nhật...
+\subsubsection{Heatmap mức độ thâm hụt bốc hơi qua các tháng trong các năm}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng lâu dài}
+Nội dung đang cập nhật...
+\subsubsection{Mức độ căng thẳng của nước}
+Nội dung đang cập nhật...
+\subsubsection{So sánh sự phân bố theo từng thập kỉ}
+Nội dung đang cập nhật...
+
+\subsection{Độ ẩm đất}
+
+\subsubsection{Chỉ số độ ẩm của đất trên từng tầng qua 45 năm}
+Nội dung đang cập nhật...
+\subsubsection{Heatmap về độ ẩm của đất}
+Nội dung đang cập nhật...
+\subsubsection{Tổng lượng nước trung bình trong đất qua các năm}
+Nội dung đang cập nhật...
+\subsubsection{Heatmap đo dị thường trong độ ẩm đất theo từng tầng, trong từng năm, tháng}
+Nội dung đang cập nhật...
+\subsubsection{Độ trễ lan truyền ẩm giữa các tầng đất}
+Nội dung đang cập nhật...
+\subsubsection{Chỉ số độ ẩm đất chuẩn hoá (SSI)}
+Nội dung đang cập nhật...
+
+\subsection{Dòng chảy và thoát nước}
+
+\subsubsection{Phân tích tốc độ dòng chảy bề mặt theo tháng}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng phân chia dòng chảy}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng lâu dài của tỉ lệ nước bề mặt}
+Nội dung đang cập nhật...
+\subsubsection{Heatmap dị thường tốc độ dòng chảy bề mặt}
+Nội dung đang cập nhật...
+\subsubsection{Dấu hiệu tần suất dòng chảy cực đoan}
+Nội dung đang cập nhật...
+
+\subsection{Bức xạ mặt trời}
+
+\subsubsection{Xu hướng bức xạ trung bình năm (Tín hiệu tối đi / sáng lên)}
+Nội dung đang cập nhật...
+\subsubsection{Heatmap dị thường trong bức xạ Mặt Trời}
+Nội dung đang cập nhật...
+
+\subsection{Thông lượng nhiệt bề mặt}
+
+\subsubsection{Chu kì mùa của hệ năng lượng cân bằng}
+Nội dung đang cập nhật...
+\subsubsection{Chu kì và xu hướng dài hạn của tỉ lệ Bowen}
+Nội dung đang cập nhật...
+\subsubsection{Heatmap dị thường tỉ lệ Bowen}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng chuyển dịch theo mùa của tỉ lệ Bowen qua các thập kỉ}
+Nội dung đang cập nhật...
+
+\subsection{Cấu trúc thảm thực vật}
+
+\subsubsection{Biến động chỉ số diện tích lá (LAI) theo mùa}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng dài hạn của độ che phủ thực vật}
+Nội dung đang cập nhật...
+\subsubsection{Phân tích tương quan giữa LAI và nhiệt độ bề mặt}
+Nội dung đang cập nhật...
+
+\subsection{Độ che phủ mây}
+
+\subsubsection{Khí hậu học độ che phủ mây: Tổng lượng mây vs Mây tầng thấp}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ mùa của các tầng mây}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng dài hạn của tổng lượng mây}
+Nội dung đang cập nhật...
+\subsubsection{Ma trận dị thường độ che phủ mây hàng tháng}
+Nội dung đang cập nhật...
+\subsubsection{Tương quan giữa độ che phủ mây và biên độ nhiệt ngày (DTR)}
+Nội dung đang cập nhật...
+
+\subsection{Bất ổn định đối lưu}
+
+\subsubsection{Khí hậu học chỉ số CAPE và các chỉ số bất ổn định}
+Nội dung đang cập nhật...
+\subsubsection{Biến động mùa của tiềm năng giông bão (K-Index)}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng dài hạn của năng lượng đối lưu}
+Nội dung đang cập nhật...
+\subsubsection{Ma trận dị thường chỉ số CAPE}
+Nội dung đang cập nhật...
+\subsubsection{Tương quan giữa CAPE và lượng mưa đối lưu}
+Nội dung đang cập nhật...
+
+\subsection{Gió}
+
+\subsubsection{Đặc điểm trường gió bề mặt (10m) và tầng cao (100m)}
+Nội dung đang cập nhật...
+\subsubsection{Biến động tốc độ gió theo mùa}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng dài hạn của tốc độ gió trung bình}
+Nội dung đang cập nhật...
+\subsubsection{Phân tích vector gió và sự thay đổi hướng gió chủ đạo}
+Nội dung đang cập nhật...
+\subsubsection{Vận tốc thẳng đứng và chuyển động đối lưu (500hPa \& 850hPa)}
+Nội dung đang cập nhật...
+
+\subsection{Phân kỳ ẩm}
+
+\subsubsection{Phân tích độ hội tụ/phân kỳ ẩm tích hợp theo cột đứng}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ mùa của dòng vận chuyển ẩm}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng dài hạn của hội tụ ẩm}
+Nội dung đang cập nhật...
+\subsubsection{Mối quan hệ giữa hội tụ ẩm và các đợt mưa lớn}
+Nội dung đang cập nhật...
+
+
+\subsection{Nhiệt độ biển và độ cao sóng}
+
+\subsubsection{Biến động nhiệt độ mặt nước biển (SST) qua các thập kỷ}
+Nội dung đang cập nhật...
+\subsubsection{Chu kỳ mùa của độ cao sóng biển}
+Nội dung đang cập nhật...
+\subsubsection{Xu hướng nóng lên của nước biển ven bờ}
+Nội dung đang cập nhật...
+\subsubsection{Ma trận dị thường SST và mối liên hệ với các sự kiện khí hậu}
+Nội dung đang cập nhật...
+\subsubsection{Tương quan giữa tốc độ gió và độ cao sóng}
+Nội dung đang cập nhật...
+
+\section{Kết luận}
+
+Thông qua quá trình phân tích toàn diện các yếu tố khí hậu của khu vực miền Trung Việt Nam, báo cáo đã làm rõ được bức tranh khí hậu đặc thù và phức tạp của vùng đất này. Từ các yếu tố cơ bản như nhiệt độ không khí và bề mặt, nhiệt độ đất, điểm sương và độ ẩm, cho đến các yếu tố động lực như chế độ gió, phân kỳ ẩm, bất ổn định đối lưu, tất cả đều được xem xét và đánh giá một cách hệ thống. Kết quả cho thấy miền Trung là khu vực có sự phân hóa khí hậu rõ rệt cả theo không gian lẫn thời gian, với sự tương tác phức tạp giữa địa hình Trường Sơn, Biển Đông và các hệ thống thời tiết nhiệt đới là nguyên nhân cốt lõi tạo nên đặc trưng khí hậu độc đáo của vùng.
+
+Về các yếu tố nhiệt và ẩm, phân tích đã chỉ ra sự phân hóa rõ ràng giữa sườn Đông và sườn Tây Trường Sơn trong chế độ nhiệt độ và lượng mưa. Hiệu ứng phơn tạo nên mùa khô gay gắt trong khi nguồn ẩm từ Biển Đông lại tập trung gây mưa lớn trong thời gian ngắn, dẫn đến sự đối lập cực đoan giữa hai mùa. Các yếu tố liên quan đến chu trình nước như lượng mưa, bốc hơi, độ ẩm đất và dòng chảy cũng cho thấy mối quan hệ tương tác chặt chẽ, phản ánh một hệ thống thủy văn khí hậu vận hành theo quy luật riêng biệt so với các khu vực khác trong cả nước. Bức xạ mặt trời và thông lượng nhiệt bề mặt đóng vai trò quan trọng trong việc điều tiết nhiệt độ và bốc hơi, đặc biệt trong các tháng mùa khô khi lượng mây che phủ thấp.
+
+Về phía các yếu tố động lực và cấu trúc khí quyển, chế độ gió và phân kỳ ẩm đã làm rõ cơ chế vận chuyển hơi nước vào khu vực, trong khi bất ổn định đối lưu giải thích cho sự hình thành của các hình thái mưa cực đoan đặc trưng. Độ che phủ mây và lượng hơi nước cột khí quyển cũng cho thấy sự biến động theo mùa rõ rệt, phù hợp với chu kỳ hoạt động của gió mùa. Nhiệt độ biển và độ cao sóng tại vùng ven bờ Biển Đông cũng được ghi nhận là có mối liên hệ mật thiết với cường độ và hướng di chuyển của các hệ thống thời tiết ảnh hưởng đến khu vực.
+
+Nhìn chung, các kết quả phân tích trong báo cáo này góp phần cung cấp một cơ sở khoa học có hệ thống về đặc trưng khí hậu miền Trung Việt Nam. Thông qua việc xây dựng notebook phân tích và dashboard trực quan hóa, nhóm mong muốn không chỉ phục vụ mục đích học thuật mà còn giúp người xem không chuyên có thể dễ dàng nắm bắt được thực trạng khí hậu của khu vực. Trong tương lai, hướng nghiên cứu có thể được mở rộng theo chiều sâu bằng cách tích hợp thêm dữ liệu chuỗi thời gian dài hạn để phân tích xu hướng biến đổi, hoặc mở rộng phạm vi so sánh với các khu vực khác trong cả nước nhằm làm nổi bật hơn nữa tính đặc thù của khí hậu miền Trung trong bối cảnh biến đổi khí hậu toàn cầu.
+
+\section{Tài liệu tham khảo}
+
+\end{document}
